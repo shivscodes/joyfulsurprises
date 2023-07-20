@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" />
+    <link rel="stylesheet" href="{% static 'customer/css/home.css' %}" />
+    <script src="https://kit.fontawesome.com/f7396dff9d.js" crossorigin="anonymous"></script>
+    <title>Home - Joyful Surprise</title>
+  </head>
+  {% include 'customer/customer_header.html' %}
+  <body>
+    <div class="categories">
+      <div class="category">
+        <img src="/static/images/birthday.jpg" alt="Birthday" />
+        <p>Birthday</p>
+      </div>
+      <div class="category">
+        <img src="/static/images/baby.jpg" alt="Baby Shower" />
+        <p>Baby Shower</p>
+      </div>
+      <div class="category">
+        <img src="/static/images/Mugs/mug1.1.jpg" alt="Category 3" />
+        <p>Category 3</p>
+      </div>
+      <div class="category">
+        <img src="/static/images/Mugs/mug1.2.jpg" alt="Category 4" />
+        <p>Category 4</p>
+      </div>
+      <div class="category">
+        <img src="/static/images/Mugs/mug1.3.jpg" alt="Category 5" />
+        <p>Category 5</p>
+      </div>
+    </div>
+
+    <div class="product-display">
+        <!-- product grid here -->
+    <div class="product-grid">
+      <div class="product-item" data-product-id="1">
+        <div class="best-seller-tag">Best Seller</div>
+        <div class="product-image">
+          <!-- Add your image(s) here with swipe functionality -->
+          <img src="/static/images/birthday.jpg" alt="Product Image">
+        </div>
+        <div class="favorite-icon">
+          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
+        </div>
+        <div class="product-price">₹999</div>
+        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
+        <div class="action-buttons">
+          <button class="action-cart">Add to Cart</button>
+          <button class="action-buy">Buy Now</button>
+        </div>
+      </div>
+      
+      <div class="product-item" data-product-id="2">
+        <div class="best-seller-tag">Best Seller</div>
+        <div class="product-image">
+          <!-- Add your image(s) here with swipe functionality -->
+          <img src="/static/images/birthday.jpg" alt="Product Image">
+        </div>
+        <div class="favorite-icon">
+          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
+        </div>
+        <div class="product-price">₹999</div>
+        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
+        <div class="action-buttons">
+          <button class="action-cart">Add to Cart</button>
+          <button class="action-buy">Buy Now</button>
+        </div>
+      </div>
+      <div class="product-item" data-product-id="3">
+        <div class="best-seller-tag">Best Seller</div>
+        <div class="product-image">
+          <!-- Add your image(s) here with swipe functionality -->
+          <img src="/static/images/Mugs/mug2.1.jpg" alt="Product Image">
+        </div>
+        <div class="favorite-icon">
+          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
+        </div>
+        <div class="product-price">₹999</div>
+        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
+        <div class="action-buttons">
+          <button class="action-cart">Add to Cart</button>
+          <button class="action-buy">Buy Now</button>
+        </div>
+      </div>
+      
+      <div class="product-item" data-product-id="4">
+        <div class="best-seller-tag">Best Seller</div>
+        <div class="product-image">
+          <!-- Add your image(s) here with swipe functionality -->
+          <img src="/static/images/Mugs/mug2.1.jpg" alt="Product Image">
+        </div>
+        <div class="favorite-icon">
+          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
+        </div>
+        <div class="product-price">₹999</div>
+        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
+        <div class="action-buttons">
+          <button class="action-cart">Add to Cart</button>
+          <button class="action-buy">Buy Now</button>
+        </div>
+      </div>
+      <div class="product-item" data-product-id="5">
+        <div class="best-seller-tag">Best Seller</div>
+        <div class="product-image">
+          <!-- Add your image(s) here with swipe functionality -->
+          <img src="/static/images/Mugs/mug2.2.jpg" alt="Product Image">
+        </div>
+        <div class="favorite-icon">
+          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
+        </div>
+        <div class="product-price">₹999</div>
+        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
+        <div class="action-buttons">
+          <button class="action-cart">Add to Cart</button>
+          <button class="action-buy">Buy Now</button>
+        </div>
+      </div>
+      
+      <div class="product-item" data-product-id="6">
+        <div class="best-seller-tag">Best Seller</div>
+        <div class="product-image">
+          <!-- Add your image(s) here with swipe functionality -->
+          <img src="/static/images/Mugs/mug2.jpg" alt="Product Image">
+        </div>
+        <div class="favorite-icon">
+          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
+        </div>
+        <div class="product-price">₹999</div>
+        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
+        <div class="action-buttons">
+          <button class="action-cart">Add to Cart</button>
+          <button class="action-buy">Buy Now</button>
+        </div>
+      </div>
+      <div class="product-item" data-product-id="7">
+        <div class="best-seller-tag">Best Seller</div>
+        <div class="product-image">
+          <!-- Add your image(s) here with swipe functionality -->
+          <img src="/static/images/birthday.jpg" alt="Product Image">
+        </div>
+        <div class="favorite-icon">
+          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
+        </div>
+        <div class="product-price">₹999</div>
+        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
+        <div class="action-buttons">
+          <button class="action-cart">Add to Cart</button>
+          <button class="action-buy">Buy Now</button>
+        </div>
+      </div>
+      
+      <div class="product-item" data-product-id="8">
+        <div class="best-seller-tag">Best Seller</div>
+        <div class="product-image">
+          <!-- Add your image(s) here with swipe functionality -->
+          <img src="/static/images/birthday.jpg" alt="Product Image">
+        </div>
+        <div class="favorite-icon">
+          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
+        </div>
+        <div class="product-price">₹999</div>
+        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
+        <div class="action-buttons">
+          <button class="action-cart">Add to Cart</button>
+          <button class="action-buy">Buy Now</button>
+        </div>
+      </div>
+      <div class="product-item" data-product-id="9">
+        <div class="best-seller-tag">Best Seller</div>
+        <div class="product-image">
+          <!-- Add your image(s) here with swipe functionality -->
+          <img src="/static/images/birthday.jpg" alt="Product Image">
+        </div>
+        <div class="favorite-icon">
+          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
+        </div>
+        <div class="product-price">₹999</div>
+        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
+        <div class="action-buttons">
+          <button class="action-cart">Add to Cart</button>
+          <button class="action-buy">Buy Now</button>
+        </div>
+      </div>
+      
+      <div class="product-item" data-product-id="10">
+        <div class="best-seller-tag">Best Seller</div>
+        <div class="product-image">
+          <!-- Add your image(s) here with swipe functionality -->
+          <img src="/static/images/birthday.jpg" alt="Product Image">
+        </div>
+        <div class="favorite-icon">
+          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
+        </div>
+        <div class="product-price">₹999</div>
+        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
+        <div class="action-buttons">
+          <button class="action-cart">Add to Cart</button>
+          <button class="action-buy">Buy Now</button>
+        </div>
+      </div>
+      <!-- Add more product items here -->
+    </div> 
+    </div>
+  </body>
+  {% include 'customer/customer_footer.html' %}
+</html>
+<script src="{% static 'customer/js/home.js' %}"></script>

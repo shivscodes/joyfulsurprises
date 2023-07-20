@@ -1,0 +1,91 @@
+var result = document.getElementById("location");
+const Http = new XMLHttpRequest();
+
+function getLocation() {
+  // console.log("getLocation Called");
+  var bdcApi = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      bdcApi =
+        bdcApi +
+        "?latitude=" +
+        position.coords.latitude +
+        "&longitude=" +
+        position.coords.longitude +
+        "&localityLanguage=en";
+      getApi(bdcApi);
+    },
+    (err) => {
+      // Handle error when geolocation permission is denied
+      var defaultCity = "Joyful";
+      result.innerHTML =
+        "<i class='fa-sharp fa-solid fa-location-dot'></i> " + defaultCity;
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    }
+  );
+}
+
+function getApi(bdcApi) {
+  Http.open("GET", bdcApi);
+  Http.send();
+  Http.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.responseText);
+      var city = response.city;
+      result.innerHTML =
+        "<i class='fa-sharp fa-solid fa-location-dot'></i> " + city;
+      // console.log(response);
+    }
+  };
+}
+
+// Call the getLocation function
+getLocation();
+
+// Hamburger Toggle Menu
+
+document.addEventListener("DOMContentLoaded", function () {
+  var hamburgerMenu = document.querySelector(".hamburger-menu");
+  var hamburgerMenuContent = document.querySelector(".hamburger-menu-content");
+  var xmarkIcon = document.querySelector(".fa-xmark");
+
+  hamburgerMenu.addEventListener("click", function () {
+    hamburgerMenuContent.style.display = "block";
+  });
+
+  xmarkIcon.addEventListener("click", function () {
+    hamburgerMenuContent.style.display = "none";
+  });
+});
+
+// Handling drop-down options
+var hamItems = document.querySelectorAll(".ham-item");
+
+hamItems.forEach(function (hamItem) {
+  var itemName = hamItem.querySelector(".ham-item-name");
+  var dropdownOptions = hamItem.querySelector(".ham-dropdown-options");
+  var plusIcon = hamItem.querySelector("#plus");
+  var minusIcon = hamItem.querySelector("#minus");
+
+  minusIcon.style.display = "none"; // Hide the minus icon initially
+  hamItem.classList.add("closed"); // Add the "closed" class initially
+
+  itemName.addEventListener("click", function () {
+    if (hamItem.classList.contains("closed")) {
+      dropdownOptions.style.display = "block";
+      plusIcon.style.display = "none";
+      minusIcon.style.display = "block";
+      hamItem.classList.remove("closed");
+    } else {
+      dropdownOptions.style.display = "none";
+      plusIcon.style.display = "block";
+      minusIcon.style.display = "none";
+      hamItem.classList.add("closed");
+    }
+  });
+});

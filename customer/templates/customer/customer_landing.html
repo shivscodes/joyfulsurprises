@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" />
+    <script
+      src="https://kit.fontawesome.com/f7396dff9d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{% static 'customer/css/customer_landing_web.css' %}"
+    />
+    <title>Joyful Surprises</title>
+  </head>
+  {% include 'customer/customer_header.html' %}
+  <body>
+    <!-- Circle Options Start -->
+    <div class="categories">
+      <div class="category">
+        <img src="/static/images/birthday.jpg" alt="Birthday" />
+        <p>Birthday</p>
+      </div>
+      <div class="category">
+        <img src="/static/images/birthday.jpg" alt="Baby Shower" />
+        <p>Shower</p>
+      </div>
+      <div class="category">
+        <img src="/static/images/Mugs/mug1.1.jpg" alt="Category 3" />
+        <p>Category 3</p>
+      </div>
+      <div class="category">
+        <img src="/static/images/Mugs/mug1.2.jpg" alt="Category 4" />
+        <p>Category 4</p>
+      </div>
+      <div class="category">
+        <img src="/static/images/Mugs/mug1.3.jpg" alt="Category 5" />
+        <p>Category 5</p>
+      </div>
+    </div>
+    <!-- Circle Options End -->
+    <!-- Banner Start -->
+    <div class="banner">
+      <div class="toggle-buttons">
+        <button onclick="showPreviousImage()">&#8249;</button>
+        <button onclick="showNextImage()">&#8250;</button>
+      </div>
+      <img
+        src="/static/images/main-banner.jpg"
+        alt="Banner 1"
+        class="active"
+      />
+      <img src="/static/images/egift-banner.jpg" alt="Banner 2" />
+      <img src="/static/images/main-banner.jpg" alt="Banner 3" />
+      <!-- Add more images here -->
+    </div>
+    <!-- Banner End -->
+    <!-- Images Below Banner Start -->
+    <div class="image-container">
+      <img src="/static/images/sub-banner.jpg" alt="Image 1" />
+      <img src="/static/images/sub-banner.jpg" alt="Image 2" />
+      <img src="/static/images/sub-banner.jpg" alt="Image 3" />
+    </div>
+    <!-- Images Below Banner End -->
+    <!-- Find Gifts Faster Start -->
+    <div class="gift-finder">
+      <h2 class="gift-finder-heading">Find Gifts Faster</h2>
+      <div class="gift-finder-row">
+        <select class="occasion-dropdown">
+          <option value="" selected disabled>Select an Occasion</option>
+          <option value="birthday">Birthday</option>
+          <option value="anniversary">Anniversary</option>
+          <option value="wedding">Wedding</option>
+          <option value="graduation">Graduation</option>
+        </select>
+        <select class="gift-type-dropdown">
+          <option value="" selected disabled>Select a Gift Type</option>
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Clothing</option>
+          <option value="books">Books</option>
+          <option value="home-decor">Home Decor</option>
+        </select>
+        <button class="submit-button">Find Gifts</button>
+      </div>
+    </div>
+    <!-- Find Gifts Faster End -->
+    <!-- Grid with left image -type-one start -->
+    <div class="container-type-one">
+      <div class="top-type-one">
+        <div class="name-type-one">Rakhi</div>
+        <button class="view-button-type-one">View All</button>
+      </div>
+      <div class="content-type-one">
+        <div class="left-column-type-one">
+          <img src="/static/images/side-banner.jpg" alt="Image 1" />
+        </div>
+        <div class="right-column-type-one">
+          <div class="row-type-one">
+            <div class="grid-container-type-one">
+              <img src="/static/images/product-banner.jpg" alt="Image 2" />
+              <h4 class="text-type-one">Rakhi Sets</h4>
+            </div>
+          </div>
+          <div class="row-type-one">
+            <div class="grid-container-type-one">
+              <img src="/static/images/product-banner.jpg" alt="Image 3" />
+              <h4 class="text-type-one">Rakhi & Chocolates</h4>
+            </div>
+          </div>
+          <div class="row-type-one">
+            <div class="grid-container-type-one">
+              <img src="/static/images/product-banner.jpg" alt="Image 4" />
+              <h4 class="text-type-one">Rakhi & Dry Fruits</h4>
+            </div>
+          </div>
+          <div class="row-type-one">
+            <div class="grid-container-type-one">
+              <img src="/static/images/product-banner.jpg" alt="Image 5" />
+              <h4 class="text-type-one">Rakhi & Personalized Gifts</h4>
+            </div>
+          </div>
+          <div class="row-type-one">
+            <div class="grid-container-type-one">
+              <img src="/static/images/product-banner.jpg" alt="Image 6" />
+              <h4 class="text-type-one">Rakhi & Mug</h4>
+            </div>
+          </div>
+          <div class="row-type-one">
+            <div class="grid-container-type-one">
+              <img src="/static/images/product-banner.jpg" alt="Image 7" />
+              <h4 class="text-type-one">Rakhi & Sweets</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Grid with left image -type-one End -->
+    <!-- Mobile extra banner Start -->
+    <div class="mobile-extra-banner">
+      <img src="/static/images/egift-banner.jpg" alt="Mobile Extra Banner" />
+      <!-- Add more images here -->
+    </div>
+    <!-- Mobile extra banner End -->
+    <!-- Grid with right image -type-two start -->
+    <div class="container-type-two">
+      <div class="top-type-two">
+        <div class="name-type-two">Name A Star</div>
+        <button class="view-button-type-two">View All</button>
+      </div>
+      <div class="content-type-two">
+        <div class="left-column-type-two">
+          <div class="row-type-two">
+            <div class="grid-container-type-two">
+              <img src="/static/images/product-banner.jpg" alt="Image 2" />
+              <h4 class="text-type-two">Rakhi Sets</h4>
+            </div>
+          </div>
+          <div class="row-type-two">
+            <div class="grid-container-type-two">
+              <img src="/static/images/product-banner.jpg" alt="Image 3" />
+              <h4 class="text-type-two">Rakhi & Chocolates</h4>
+            </div>
+          </div>
+          <div class="row-type-two">
+            <div class="grid-container-type-two">
+              <img src="/static/images/product-banner.jpg" alt="Image 4" />
+              <h4 class="text-type-two">Rakhi & Dry Fruits</h4>
+            </div>
+          </div>
+          <div class="row-type-two">
+            <div class="grid-container-type-two">
+              <img src="/static/images/product-banner.jpg" alt="Image 5" />
+              <h4 class="text-type-two">Rakhi & Personalized Gifts</h4>
+            </div>
+          </div>
+          <div class="row-type-two">
+            <div class="grid-container-type-two">
+              <img src="/static/images/product-banner.jpg" alt="Image 6" />
+              <h4 class="text-type-two">Rakhi & Mug</h4>
+            </div>
+          </div>
+          <div class="row-type-two">
+            <div class="grid-container-type-two">
+              <img src="/static/images/product-banner.jpg" alt="Image 7" />
+              <h4 class="text-type-two">Rakhi & Sweets</h4>
+            </div>
+          </div>
+        </div>
+        <div class="right-column-type-two">
+          <img src="/static/images/side-banner.jpg" alt="Image 1" />
+        </div>
+      </div>
+    </div>
+    <!-- Grid with right image -type-two end -->
+    <!-- Best Selling Grid Start -->
+    <div class="container-best-selling">
+      <div class="header-best-selling">
+        <h2>Best Selling Gifts</h2>
+      </div>
+      <div class="grid">
+        <div class="grid-item">
+          <img src="/static/images/product-banner.jpg" alt="Image 1">
+          <p>Text 1</p>
+        </div>
+        <div class="grid-item">
+          <img src="/static/images/product-banner.jpg" alt="Image 2">
+          <p>Text 2</p>
+        </div>
+        <div class="grid-item">
+          <img src="/static/images/product-banner.jpg" alt="Image 3">
+          <p>Text 3</p>
+        </div>
+        <div class="grid-item">
+          <img src="/static/images/product-banner.jpg" alt="Image 4">
+          <p>Text 4</p>
+        </div>
+        <div class="grid-item">
+          <img src="/static/images/product-banner.jpg" alt="Image 5">
+          <p>Text 5</p>
+        </div>
+        <div class="grid-item">
+          <img src="/static/images/product-banner.jpg" alt="Image 6">
+          <p>Text 6</p>
+        </div>
+        <div class="grid-item">
+          <img src="/static/images/product-banner.jpg" alt="Image 7">
+          <p>Text 7</p>
+        </div>
+        <div class="grid-item">
+          <img src="/static/images/product-banner.jpg" alt="Image 8">
+          <p>Text 8</p>
+        </div>
+        <div class="grid-item">
+          <img src="/static/images/product-banner.jpg" alt="Image 9">
+          <p>Text 9</p>
+        </div>
+        <div class="grid-item">
+          <img src="/static/images/product-banner.jpg" alt="Image 10">
+          <p>Text 10</p>
+        </div>
+      </div>
+    </div>  
+    <!-- Best Selling Grid End -->
+  </body>
+  {% include 'customer/customer_footer.html' %}
+</html>
+<script src="{% static 'customer/js/customer_landing.js' %}"></script>
