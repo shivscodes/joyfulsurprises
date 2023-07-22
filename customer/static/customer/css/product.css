@@ -5,6 +5,7 @@ body {
 
 /* Customize vertical scroll */
 ::-webkit-scrollbar {
+  display: none;
   width: 10px;
 }
 
@@ -23,51 +24,69 @@ body {
   background: #27a302;
 }
 
+/* ****************** Product Info Page with Image ************** */
 .product-section {
   display: flex;
   padding: 0px;
   margin-top: 5px;
   height: auto;
+  overflow: hidden; /* Hide overflowing content */
 }
 
 .product-img {
   flex: 45%;
+  height: 100%;
+  position: sticky;
+  top: 0;
 }
 
 .product-info {
   flex: 55%;
   margin-left: 10px;
 }
+
 .img-display {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: flex-end;
+  justify-content: flex-start;
   height: 100%; /* Set the height to match the product-img div */
-  margin: 10%;
+  margin: 1%;
+  margin-top: 6%;
+  margin-right: 8%;
 }
+
 .img-large {
   flex: 60%;
-  max-width: 100%;
-  max-height: 68%;
+  max-width: 60%;
+  max-height: 60%;
 }
 .img-large img {
   max-width: 100%;
   max-height: 100%;
+  border-radius: 5px;
 }
 
 .thumbnail-images {
   flex: 40%;
   max-width: 15%;
-  height: calc(100% - 24.5%);
-  margin-right: 20px;
+  max-height: 100%;
+  margin-right: 2%;
+  margin-top: 0%;
+  cursor: pointer;
   overflow-y: hidden;
 }
+
 .thumbnail-images img {
   max-width: 100%;
   max-height: 100%;
   margin-bottom: 5px;
-  cursor: pointer;
+  border-radius: 3px;
 }
+
+.thumb-scroll {
+  max-height: 100px;
+}
+
 .thumbnail-images:hover {
   /* Show the scrollbar on hover */
   overflow-y: auto;
@@ -87,25 +106,32 @@ body {
 .product-info h1 {
   margin-top: 5%;
 }
+.detail-info{
+  max-width: 80%;
+  max-height: 100%;
+}
 .add-to-cart {
   color: white;
-  padding: 16px 40px;
+  padding: 16px 50px;
   border: none;
   cursor: pointer;
   margin-right: 10px;
   background-color: #2e3368;
   border-radius: 5px;
+  font-size: 20px;
 }
 
 .buy-now {
   color: white;
-  padding: 16px 40px;
+  padding: 16px 50px;
   border: none;
   cursor: pointer;
   margin-right: 10px;
   background-color: #2e3368;
   border-radius: 5px;
+  font-size: 20px;
 }
+
 .buy-now:hover,
 .add-to-cart:hover {
   background-color: #22b7eb;
@@ -114,14 +140,15 @@ body {
 /* Price Tag Style */
 .price-tag {
   font-size: 16px;
+  margin-bottom: 5px;
 }
 
 .rupee {
-  font-size: 80px;
+  font-size: 40px;
 }
 
 .discounted-price {
-  font-size: 80px;
+  font-size: 40px;
   font-weight: bold;
 }
 
@@ -131,6 +158,134 @@ body {
   color: #888; /* Optional: Add a different color for the struck-off price */
 }
 .discount-percentage {
-  font-size: 40px;
+  font-size: 25px;
+  color: #f00f26;
 }
-/* Zoom Style */
+.discount-off{
+  font-size: 20px;
+  color: #f00f26;
+}
+/* Apply underline to h2 and h4 elements */
+h2 {
+  border-bottom: 1px solid #d5d5d5;
+}
+
+/* ********** Product Grid ************ */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  row-gap: 30px;
+}
+
+.product-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.best-seller-tag {
+  position: absolute;
+  top: 22px;
+  left: -14px;
+  transform: rotate(-45deg);
+  background-color: #ff9800;
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.product-image input[type="range"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.product-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-out;
+}
+
+.product-image input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #ff9800;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.product-image input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #ff9800;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.product-price,
+.actual-price {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px; 
+}
+
+.action-buttons {
+  display: flex;
+  margin-top: 5px;
+  margin-right: 5px;
+  justify-content: space-around; /* Center align the buttons */
+}
+
+.action-buttons .action-cart,
+.action-buttons .action-buy {
+  padding: 10px 20px;
+  background-color: #2e3368;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.flash-card {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background-color: #f00f26;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 4px;
+  z-index: 9999;
+  animation: flash-card-appear 0.3s ease-out;
+}

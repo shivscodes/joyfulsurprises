@@ -35,7 +35,11 @@
           ><i class="fa-brands fa-whatsapp">&nbsp;</i>+919966558383</a
         ></span
       >
-      <button class="right-span">Login</button>
+      {% if user.is_authenticated %}
+      <a href="{% url 'user_logout' %}" class="right-span">Logout</a>
+      {% else %}
+      <a href="{% url 'login' %}" class="right-span">Login</a>
+      {% endif %}
     </div>
     <!-- Header-Top end -->
     <!-- Header Start -->
@@ -67,13 +71,20 @@
     <!-- Drop Down Content Start -->
     <div class="dropdown">
       <div class="item">
-        RAKHI
-        <i class="fa-solid fa-caret-down"></i>
+        <p>RAKHI <i class="fa-solid fa-caret-down"></i></p>
         <div class="dropdown-options">
           <div class="options-container">
             <div class="options-left">
               <div class="dropdown-category">
                 <h2 class="dropdown-category-title">By Type</h2>
+                <ul class="dropdown-options">
+                  <li>Shilpa</li>
+                  <li>Option 2</li>
+                  <li>Option 3</li>
+                </ul>
+              </div>
+              <div class="dropdown-category">
+                <h2 class="dropdown-category-title">Digital Gifts</h2>
                 <ul class="dropdown-options">
                   <li>Option 1</li>
                   <li>Option 2</li>
@@ -81,7 +92,7 @@
                 </ul>
               </div>
               <div class="dropdown-category">
-                <h2 class="dropdown-category-title">Digital Gifts</h2>
+                <h2 class="dropdown-category-title">E Gifts</h2>
                 <ul class="dropdown-options">
                   <li>Option 1</li>
                   <li>Option 2</li>
@@ -96,8 +107,7 @@
         </div>
       </div>
       <div class="item">
-        VALENTINE
-        <i class="fa-solid fa-caret-down"></i>
+        <p>VALENTINE <i class="fa-solid fa-caret-down"></i></p>
         <div class="dropdown-options">
           <div class="options-container">
             <div class="options-left">

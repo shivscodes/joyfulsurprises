@@ -9,6 +9,7 @@
   margin: 5px;
   line-height: 1.5;
   text-align: justify;
+  margin-bottom: 15px;
 }
 
 .address p {
@@ -20,9 +21,8 @@
   background-color: #22b7eb;
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  padding: 20px;
   justify-content: center;
-  margin: 0px;
 }
 
 
@@ -58,7 +58,6 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 15px;
 }
 .payment img {
   height: 20px;

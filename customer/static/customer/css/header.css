@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 /*  ****** Header top style ********* */
 .hamburger-menu-content,
 .hamburger-menu {
@@ -19,6 +21,7 @@
 
 /* Style for the right span */
 .right-span {
+  font-family: 'Roboto', sans-serif;
   margin-right: 0;
   margin-left: auto;
   background-color: #2e3368;
@@ -27,14 +30,12 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  text-decoration: none;
 }
 .right-span:hover {
   background-color: #22b7eb;
 }
 
-.right-span:focus {
-  outline: none;
-}
 /* Style for the anchor tag */
 .left-span a {
   color: black;
@@ -154,7 +155,9 @@
 .options-container {
   display: none;
 }
-
+.item p{
+  margin: 0px;
+}
 .item:hover {
   color: #000000;
   background-color: #ffffff;
@@ -170,7 +173,7 @@
   justify-content: space-between;
   padding: 0px;
   position: fixed;
-  top: 161px;
+  top: 165px;
   left: 0;
 }
 
@@ -186,12 +189,12 @@
   height: auto;
 }
 
-.dropdown-category{
+.dropdown-category {
   display: flex;
   flex-direction: column;
   margin-right: 20px;
 }
-.dropdown-category h2{
+.dropdown-category h2 {
   margin-bottom: 0px;
 }
 
@@ -201,8 +204,36 @@
 }
 
 .dropdown-options li {
-  margin-bottom: 5px; /* Add spacing between list items */
+  margin-bottom: 10px; /* Add spacing between list items */
 }
+
+
+/* Increase spacing between list items */
+.dropdown-category ul.dropdown-options li {
+  margin-bottom: 20px; /* Adjust the desired spacing between each li */
+  position: relative; /* Required for positioning the ::before element */
+}
+
+/* Underline animation on hover */
+.dropdown-category ul.dropdown-options li::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #22b7eb; /* Adjust the color of the underline */
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0); /* Initially hide the underline with scaleX(0) */
+  transform-origin: left; /* Set the origin of the transform to the left */
+  transition: transform 0.2s ease-in-out; /* Apply transition to the transform property */
+}
+
+.dropdown-category ul.dropdown-options li:hover::before {
+  width: 100%; /* This will create the left-to-right animation effect */
+  transform: scaleX(1); /* Show the underline by scaling it horizontally to full width */
+}
+
+
 
 /* ******* Mobile View Styling ******* */
 

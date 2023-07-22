@@ -46,6 +46,7 @@
 
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
+from django.contrib.auth import logout
 
 def register(request):
     if request.method == 'POST':
@@ -77,7 +78,9 @@ def user_login(request):
     
     return render(request, 'customer/customer_login.html')
     
-
+def user_logout(request):
+    logout(request)
+    return redirect('home')
 
 def home(request, **kwargs):
     categories_content = "hello there"
@@ -85,3 +88,6 @@ def home(request, **kwargs):
 
 def product(request, **kwargs):
     return render(request, 'customer/product.html')
+
+def product_display(request, **kwargs):
+    return render(request, 'customer/customer_home.html')
