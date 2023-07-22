@@ -9,84 +9,79 @@
       src="https://kit.fontawesome.com/f7396dff9d.js"
       crossorigin="anonymous"
     ></script>
-    <link
-      rel="stylesheet"
-      href="{% static 'customer/css/product.css' %}"
-    />
+    <link rel="stylesheet" href="{% static 'customer/css/product.css' %}" />
     <title>Joyful Surprises</title>
   </head>
   {% include 'customer/customer_header.html' %}
   <body>
-    <section id="product-info">
-
-      <div class="item-image-parent">
-          <div class="item-list-vertical">
-              <div class="thumb-box">
-                  <img src="https://i.ibb.co/VJf6fXm/thumb1.jpg" alt="thumbnail" />
-              </div>
-              <div class="thumb-box">
-                  <img src="https://i.ibb.co/Jt5zc58/thumb2.jpg" alt="thumbnail" />
-              </div>
-              <div class="thumb-box">
-                  <img src="https://i.ibb.co/Yf9LMpy/thumb3.jpg" alt="thumbnail" />
-              </div>
-              <div class="thumb-box">
-                  <img src="https://i.ibb.co/60hPGy2/thumb4.jpg" alt="thumbnail" />
-              </div>
-
+    <div class="product-section">
+      <div class="product-img">
+        <div class="img-display">
+          <div class="img-large">
+            <img
+              id="largeImage"
+              src="/static/images/best-sell.jpg"
+              alt="Category 4"
+            />
+            <div class="guarantee">
+              <img src="/static/images/smile safe support.png" alt="smile">
+            </div>
           </div>
-          <div class="item-image-main">
-              <img src="https://i.ibb.co/xYpFY0T/item1.jpg" alt="default" />
+          <div class="thumbnail-images">
+            <img
+              src="/static/images/best-sell.jpg"
+              alt="Thumbnail 1"
+              onclick="updateLargeImage('/static/images/best-sell.jpg')"
+            />
+            <img
+              src="/static/images/star.jpg"
+              alt="Thumbnail 2"
+              onclick="updateLargeImage('/static/images/star.jpg')"
+            />
+            <img
+              src="/static/images/rakhi-gift.jpg"
+              alt="Thumbnail 3"
+              onclick="updateLargeImage('/static/images/rakhi-gift.jpg')"
+            />
+            <img
+              src="/static/images/Mugs/mug1.1.jpg"
+              alt="Thumbnail 4"
+              onclick="updateLargeImage('/static/images/Mugs/mug1.1.jpg')"
+            />
+            <img
+              src="/static/images/Mugs/mug1.3.jpg"
+              alt="Thumbnail 5"
+              onclick="updateLargeImage('/static/images/Mugs/mug1.3.jpg')"
+            />
           </div>
+        </div>
+        
       </div>
-
-      <div class="item-info-parent">
-          <!-- main info -->
-          <div class="main-info">
-              <h4>EYEBOGLER Regular Fit Men's Cotton T-Shirt</h4>
-              <div class="star-rating">
-                  <span>★★★★</span>★            
-              </div>
-              <p>Price: <span id="price">₹ 449.00</span></p>
-          </div>
-          <!-- Choose -->
-          <div class="select-items">
-              
-              <div class="change-color">
-                  <label><b>Colour:</b> Black</label><br>
-                  <div class="thumb-box">
-                      <img src="https://i.ibb.co/QjkJJk3/select1.jpg" alt="thumbnail" />
-                  </div>
-                  <div class="thumb-box">
-                      <img src="https://i.ibb.co/C297yD0/select2.jpg" alt="thumbnail" />
-                  </div>
-              </div>
-              
-              <div class="change-size">
-                  <label><b>Size:</b></label><br>
-                  <select>
-                      <option>S</option>
-                      <option>M</option>
-                      <option>L</option>
-                      <option>XL</option>
-                      <option>2XL</option>
-                  </select>
-              </div>
-
-              <div class="description">
-                  <ul>
-                      <li>Care Instructions: Machine Wash</li>
-                      <li>Fit Type: Classic Fit</li>
-                      <li>Color name: Black-White</li>
-                      <li>Material: Cotton</li>
-                      <li>Pattern: Solid</li>
-                  </ul>
-              </div>
-          </div>
-          <!-- Description -->
+      <div class="product-info">
+        <h1>Wall Mounted Musician Playing Sitar Frame Figurine</h1>
+        <div class="price-tag">
+          <span class="rupee">₹</span>
+          <span class="discounted-price">1999</span>
+          <span class="actual-price">2999</span>
+          <span class="discount-percentage"></span>
+        </div>
+        <button class="add-to-cart">Add To Cart</button>
+        <button class="buy-now">Buy Now</button>
+        <h2>Description</h2>
+        <h4>Product Details</h4>
+        <ul>
+          <li>One Wall Mounted Musician Playing Sitar Framed Figurine</li>
+          <li>Colour- Green</li>
+          <li>Material- Metal</li>
+          <li>Dimensions- 50 x 3 x 28 cms</li>
+          <li>
+            This is an antique wall hanging showpiece which provides a unique
+            and vintage look to your home, office, and room.
+          </li>
+        </ul>
       </div>
-  </section>
+    </div>
   </body>
   {% include 'customer/customer_footer.html' %}
 </html>
-<script src="{% static 'customer/js/customer_landing.js' %}"></script>
+<script src="{% static 'customer/js/product.js' %}"></script>

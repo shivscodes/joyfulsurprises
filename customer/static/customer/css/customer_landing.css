@@ -371,9 +371,10 @@ body {
   body {
     overflow-x: hidden;
   }
-  .gift-finder{
+  /* Hide or Show find gifts faster */
+  /* .gift-finder{
     display: none;
-  }
+  } */
   /* Toggle Resize */
   .toggle-buttons {
     position: absolute;
