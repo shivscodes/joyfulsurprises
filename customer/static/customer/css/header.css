@@ -164,7 +164,6 @@
 }
 
 .item:hover .options-container {
-  display: flex;
   background-color: #f5dddd;
   width: 96vw;
   height: auto;
@@ -176,6 +175,13 @@
   top: 165px;
   left: 0;
 }
+
+.data-container{
+  display: flex;
+  width: 96vw;
+  height: auto;
+}
+
 .dropdown-category-title{
   margin: 0px;
   font-weight: bold;
@@ -194,7 +200,7 @@
 
 .options-right img {
   margin: 10px;
-  max-width: 50%;
+  max-width: 80%;
   height: auto;
 }
 

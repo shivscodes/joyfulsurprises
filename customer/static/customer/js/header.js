@@ -91,13 +91,30 @@ hamItems.forEach(function (hamItem) {
 });
 
 // Hover Script
-// Function to show dropdown content related to the hovered nav-item
-function showDropdown(item) {
-  // Hide all dropdowns first
-  const dropdowns = document.querySelectorAll('.dropdown');
-  dropdowns.forEach(dropdown => dropdown.style.display = 'none');
+document.addEventListener("DOMContentLoaded", function() {
+  var items = document.querySelectorAll(".item");
+  var optionsContainers = document.querySelectorAll(".options-container");
 
-  // Show the relevant dropdown
-  const dropdownToShow = document.querySelector(`#${item}-dropdown`);
-  dropdownToShow.style.display = 'flex';
-}
+  items.forEach(function(item, index) {
+    item.addEventListener("mouseover", function() {
+      optionsContainers[index].style.display = "block";
+      optionsContainers[index].style.position = "fixed";
+      optionsContainers[index].style.width = "100%";
+      optionsContainers[index].style.left = "0";
+      optionsContainers[index].style.top = item.getBoundingClientRect().bottom + "px";
+    });
+
+    item.addEventListener("mouseout", function() {
+      optionsContainers[index].style.display = "none";
+    });
+  });
+
+  // Add a scroll event listener to reposition the options container when scrolling
+  window.addEventListener("scroll", function() {
+    items.forEach(function(item, index) {
+      if (optionsContainers[index].style.display === "block") {
+        optionsContainers[index].style.top = item.getBoundingClientRect().bottom + "px";
+      }
+    });
+  });
+});

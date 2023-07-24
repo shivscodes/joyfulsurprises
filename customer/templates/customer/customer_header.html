@@ -76,29 +76,31 @@
           <p>{{ superCategory.name }} <i class="fa-solid fa-caret-down"></i></p>
           <div class="dropdown-options">
             <div class="options-container">
-              <div class="options-left">
-                {% for category in superCategory.categories %}
-                  <div class="dropdown-category">
-                    <p class="dropdown-category-title">{{ category.name }}</p>
-                    {% if category.sub_categories %}
-                    <ul class="category-list">
-                      {% for subCategory in category.sub_categories %}
-                        <li>{{ subCategory.name }}</li>
-                      {% endfor %}
-                    </ul>
-                    {% endif %}
-                  </div>
-                {% endfor %}
-              </div>
-              <div class="options-right">
-                <img src="{{ superCategory.image_url }}" alt="Image" />
+              <div class="data-container">
+                <div class="options-left">
+                  {% for category in superCategory.categories %}
+                    <div class="dropdown-category">
+                      <p class="dropdown-category-title">{{ category.name }}</p>
+                      {% if category.sub_categories %}
+                      <ul class="category-list">
+                        {% for subCategory in category.sub_categories %}
+                          <li>{{ subCategory.name }}</li>
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+                <div class="options-right">
+                  <img src="{{ superCategory.image_url }}" alt="Image" />
+                </div>
               </div>
             </div>
           </div>
         </div>
           {% endif %}
         {% endfor %}
-    <!-- Add more items here -->
+      <!-- Add more items here -->
     </div>
     <!-- Drop Down Content End -->
     <!-- Hamburger Menu Content Start -->
