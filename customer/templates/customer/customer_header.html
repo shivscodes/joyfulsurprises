@@ -119,7 +119,7 @@
           <div class="ham-dropdown-options">
             {% for category in superCategory.categories %}
             <div class="ham-category">
-              <h2 class="ham-category-title">{{ category.name }}</h2>
+              <p class="ham-category-title">{{ category.name }}</p>
               {% if category.sub_categories %}
               <ul class="ham-options">
                 {% for subCategory in category.sub_categories %}

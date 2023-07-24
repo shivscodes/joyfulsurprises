@@ -4,7 +4,7 @@ from django.dispatch import receiver
 import uuid
 # Create your models here.
 
-
+#Model for the dropdown menu and stuff
 class SuperCategory(models.Model):
     
     class Meta:
@@ -50,9 +50,31 @@ class SubCategory(models.Model):
         
     name = models.CharField(max_length=200)
     category = models.ManyToManyField(Category, blank=True)
-
+ 
     def __str__(self):
         return self.name
+
+
+#Model for the Circle Images and Stuff
+
+class CircleCategory(models.Model):
+    
+    class Meta:
+        verbose_name = 'Circle Category'
+        verbose_name_plural = 'Circle Categories'
+        
+    circle_image = models.ImageField(upload_to='circle_category/', null=True, blank=True, help_text="Please upload an image with dimensions 1080x1080.")  # Assuming the image source is a URL with a maximum length of 200 characters.
+    alt_text = models.CharField(max_length=100, help_text="Please provide the alternate tex to display")   # Assuming alt text has a maximum length of 100 characters.
+    circle_category_name = models.CharField(max_length=50, help_text="This is the text that appears below the Circle")
+
+class MainBanner(models.Model):
+    image = models.ImageField(upload_to='banners/')
+    alternate_text = models.CharField(max_length=255)
+    active = models.BooleanField(default=False)
+
+
+
+
 
 
 class Product(models.Model):

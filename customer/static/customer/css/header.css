@@ -316,7 +316,10 @@
   .ham-dropdown-options {
     display: none;
   }
-  
+  .ham-category p{
+    margin: 0px;
+    text-align: start;
+  }  
   /* Styles for the hamburger menu content */
   .hamburger-menu-content {
     position: absolute;

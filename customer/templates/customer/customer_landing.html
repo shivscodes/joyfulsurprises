@@ -19,26 +19,12 @@
     {% include 'customer/customer_header.html' %}
     <!-- Circle Options Start -->
     <div class="categories">
+      {% for circle in circle_data %}
       <div class="category">
-        <img src="/static/images/birthday.jpg" alt="Birthday" />
-        <p>Birthday</p>
+        <img src="{{ circle.circle_image }}" alt="{{ circle.alt_text }}" />
+        <p>{{ circle.circle_category_name }}</p>
       </div>
-      <div class="category">
-        <img src="/static/images/birthday.jpg" alt="Baby Shower" />
-        <p>Shower</p>
-      </div>
-      <div class="category">
-        <img src="/static/images/Mugs/mug1.1.jpg" alt="Category 3" />
-        <p>Category 3</p>
-      </div>
-      <div class="category">
-        <img src="/static/images/Mugs/mug1.2.jpg" alt="Category 4" />
-        <p>Category 4</p>
-      </div>
-      <div class="category">
-        <img src="/static/images/Mugs/mug1.3.jpg" alt="Category 5" />
-        <p>Category 5</p>
-      </div>
+      {% endfor %}
     </div>
     <!-- Circle Options End -->
     <!-- Banner Start -->
@@ -47,13 +33,9 @@
         <button onclick="showPreviousImage()">&#8249;</button>
         <button onclick="showNextImage()">&#8250;</button>
       </div>
-      <img
-        src="/static/images/main-banner.jpg"
-        alt="Banner 1"
-        class="active"
-      />
-      <img src="/static/images/egift-banner.jpg" alt="Banner 2" />
-      <img src="/static/images/main-banner.jpg" alt="Banner 3" />
+      <{% for banner in banner_data %}
+      <img src='{{ banner.image }}' alt='{{ banner.alternate_text }}' {% if index == 0 %}class="active"{% endif %}>
+      {% endfor %}
       <!-- Add more images here -->
     </div>
     <!-- Banner End -->

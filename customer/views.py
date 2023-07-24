@@ -40,8 +40,8 @@ def user_logout(request):
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from inventory.models import SuperCategory
-from inventory.serializers import SuperCategorySerializer
+from inventory.models import SuperCategory, CircleCategory, MainBanner
+from inventory.serializers import SuperCategorySerializer, CircleCategorySerializer, MainBannerSerializer
 from django.db.models import Prefetch
 import json
 
@@ -78,9 +78,21 @@ def home(request, **kwargs):
 
     # Convert the final_data list to a JSON object
     drop_down_data = data
-
     # Now you can access and use json_data as a JSON object
-    return render(request, 'customer/customer_landing.html',{'drop_down_data':drop_down_data})
+    
+    # Retrieve all CircleCategory objects from the database
+    circle_categories = CircleCategory.objects.all()
+    # Pass the queryset to the serializer to convert the objects into JSON data
+    serializer = CircleCategorySerializer(circle_categories, many=True)
+    circle = serializer.data
+    circle_data = json.loads(json.dumps(circle))
+    
+    active_banners = MainBanner.objects.filter(active=True)
+    banner = MainBannerSerializer(active_banners, many=True)
+    banner = banner.data
+    banner_data = json.loads(json.dumps(banner))
+    
+    return render(request, 'customer/customer_landing.html',{'drop_down_data':drop_down_data,'circle_data':circle_data,'banner_data':banner_data})
 
 def product(request, **kwargs):
     return render(request, 'customer/product.html')

@@ -9,8 +9,8 @@ from rest_framework.decorators import api_view
 
 
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from .models import SuperCategory, Category, SubCategory, Product
-from .serializers import SuperCategorySerializer, CategorySerializer, SubCategorySerializer, ProductSerializer
+from .models import SuperCategory, Category, SubCategory,CircleCategory, MainBanner, Product
+from .serializers import SuperCategorySerializer, CategorySerializer, SubCategorySerializer, CircleCategorySerializer, MainBannerSerializer, ProductSerializer
 
 # Views for SuperCategory model
 class SuperCategoryListCreateView(ListCreateAPIView):
@@ -38,6 +38,24 @@ class SubCategoryListCreateView(ListCreateAPIView):
 class SubCategoryRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     queryset = SubCategory.objects.all()
     serializer_class = SubCategorySerializer
+
+
+class CircleCategoryListCreateView(ListCreateAPIView):
+    queryset = CircleCategory.objects.all()
+    serializer_class = CircleCategorySerializer
+
+class CircleCategoryRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = CircleCategory.objects.all()
+    serializer_class = CircleCategorySerializer
+
+class MainBannerListCreateView(ListCreateAPIView):
+    queryset = MainBanner.objects.all()
+    serializer_class = MainBannerSerializer
+
+class MainBannerRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = MainBanner.objects.all()
+    serializer_class = MainBannerSerializer
+
 
 # Views for Product model
 class ProductListCreateView(ListCreateAPIView):
