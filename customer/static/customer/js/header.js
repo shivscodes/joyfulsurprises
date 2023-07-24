@@ -89,3 +89,15 @@ hamItems.forEach(function (hamItem) {
     }
   });
 });
+
+// Hover Script
+// Function to show dropdown content related to the hovered nav-item
+function showDropdown(item) {
+  // Hide all dropdowns first
+  const dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(dropdown => dropdown.style.display = 'none');
+
+  // Show the relevant dropdown
+  const dropdownToShow = document.querySelector(`#${item}-dropdown`);
+  dropdownToShow.style.display = 'flex';
+}

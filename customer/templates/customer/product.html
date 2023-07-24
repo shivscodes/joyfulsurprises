@@ -68,6 +68,27 @@
             <span class="discount-percentage"></span>
             <span class="discount-off">Off</span>
           </div>
+          <!-- Custommise Gift code here -->
+          <h1>Customize Your Gift</h1>
+          <form>
+              <label for="giftHeading">Gift Heading:</label>
+              <input type="text" id="giftHeading" name="giftHeading"><br>
+      
+              <label for="giftBody">Gift Body:</label>
+              <textarea id="giftBody" name="giftBody"></textarea><br>
+      
+              <label for="giftFooter">Gift Footer:</label>
+              <input type="text" id="giftFooter" name="giftFooter"><br>
+      
+              <label for="imageUpload">Select multiple images:</label>
+              <input type="file" id="imageUpload" name="images[]" multiple accept="image/*">
+              <div id="preview-container"></div>
+
+              <label for="giftColor">Gift Color:</label>
+              <input type="color" id="giftColor" name="giftColor"><br>
+      
+              <input type="submit" value="Submit">
+          </form>
           <button class="add-to-cart">Add To Cart</button>
           <button class="buy-now">Buy Now</button>
           <h2>Description</h2>

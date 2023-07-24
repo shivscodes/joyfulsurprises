@@ -70,71 +70,35 @@
     </div>
     <!-- Drop Down Content Start -->
     <div class="dropdown">
-      <div class="item">
-        <p>RAKHI <i class="fa-solid fa-caret-down"></i></p>
-        <div class="dropdown-options">
-          <div class="options-container">
-            <div class="options-left">
-              <div class="dropdown-category">
-                <h2 class="dropdown-category-title">By Type</h2>
-                <ul class="dropdown-options">
-                  <li>Shilpa</li>
-                  <li>Option 2</li>
-                  <li>Option 3</li>
-                </ul>
+      {% for superCategory in drop_down_data.super_categories %}
+        {% if superCategory.is_active %}
+        <div class="item">
+          <p>{{ superCategory.name }} <i class="fa-solid fa-caret-down"></i></p>
+          <div class="dropdown-options">
+            <div class="options-container">
+              <div class="options-left">
+                {% for category in superCategory.categories %}
+                  <div class="dropdown-category">
+                    <p class="dropdown-category-title">{{ category.name }}</p>
+                    {% if category.sub_categories %}
+                    <ul class="category-list">
+                      {% for subCategory in category.sub_categories %}
+                        <li>{{ subCategory.name }}</li>
+                      {% endfor %}
+                    </ul>
+                    {% endif %}
+                  </div>
+                {% endfor %}
               </div>
-              <div class="dropdown-category">
-                <h2 class="dropdown-category-title">Digital Gifts</h2>
-                <ul class="dropdown-options">
-                  <li>Option 1</li>
-                  <li>Option 2</li>
-                  <li>Option 3</li>
-                </ul>
+              <div class="options-right">
+                <img src="{{ superCategory.image_url }}" alt="Image" />
               </div>
-              <div class="dropdown-category">
-                <h2 class="dropdown-category-title">E Gifts</h2>
-                <ul class="dropdown-options">
-                  <li>Option 1</li>
-                  <li>Option 2</li>
-                  <li>Option 3</li>
-                </ul>
-              </div>
-            </div>
-            <div class="options-right">
-              <img src="/static/images/birthday.jpg" alt="Image" />
             </div>
           </div>
         </div>
-      </div>
-      <div class="item">
-        <p>VALENTINE <i class="fa-solid fa-caret-down"></i></p>
-        <div class="dropdown-options">
-          <div class="options-container">
-            <div class="options-left">
-              <div class="dropdown-category">
-                <h2 class="dropdown-category-title">By Type</h2>
-                <ul class="dropdown-options">
-                  <li>Option 1</li>
-                  <li>Option 2</li>
-                  <li>Option 3</li>
-                </ul>
-              </div>
-              <div class="dropdown-category">
-                <h2 class="dropdown-category-title">Digital Gifts</h2>
-                <ul class="dropdown-options">
-                  <li>Option 1</li>
-                  <li>Option 2</li>
-                  <li>Option 3</li>
-                </ul>
-              </div>
-            </div>
-            <div class="options-right">
-              <img src="/static/images/birthday.jpg" alt="Image" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Add more items here -->
+          {% endif %}
+        {% endfor %}
+    <!-- Add more items here -->
     </div>
     <!-- Drop Down Content End -->
     <!-- Hamburger Menu Content Start -->

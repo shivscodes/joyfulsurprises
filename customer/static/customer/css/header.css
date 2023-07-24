@@ -176,16 +176,25 @@
   top: 165px;
   left: 0;
 }
-
+.dropdown-category-title{
+  margin: 0px;
+  font-weight: bold;
+}
 .options-left {
+  flex: 70%;
   margin: 2%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+}
+.options-right {
+  flex: 30%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .options-right img {
-  margin-right: 0px;
-  max-width: 100%;
+  margin: 10px;
+  max-width: 50%;
   height: auto;
 }
 
@@ -198,24 +207,24 @@
   margin-bottom: 0px;
 }
 
-.dropdown-options {
+.category-list {
   list-style-type: none; /* Remove the dot in front of list items */
   padding-left: 0; /* Remove the default left padding of the list */
 }
 
-.dropdown-options li {
+.category-list li {
   margin-bottom: 10px; /* Add spacing between list items */
 }
 
 
 /* Increase spacing between list items */
-.dropdown-category ul.dropdown-options li {
+.dropdown-category ul.category-list li {
   margin-bottom: 20px; /* Adjust the desired spacing between each li */
   position: relative; /* Required for positioning the ::before element */
 }
 
 /* Underline animation on hover */
-.dropdown-category ul.dropdown-options li::before {
+.dropdown-category ul.category-list li::before {
   content: "";
   position: absolute;
   width: 0;
@@ -228,7 +237,7 @@
   transition: transform 0.2s ease-in-out; /* Apply transition to the transform property */
 }
 
-.dropdown-category ul.dropdown-options li:hover::before {
+.dropdown-category ul.category-list li:hover::before {
   width: 100%; /* This will create the left-to-right animation effect */
   transform: scaleX(1); /* Show the underline by scaling it horizontally to full width */
 }
@@ -347,7 +356,7 @@
     margin-bottom: 5px;
   }
 
-  .ham-dropdown-options {
+  .ham-category-list {
     display: none;
     top: 100%;
     left: 0;

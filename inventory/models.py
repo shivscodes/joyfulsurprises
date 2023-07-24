@@ -1,54 +1,95 @@
 from django.db import models
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
-import os
+import uuid
 # Create your models here.
 
-#Image Upload Path
-def get_image_upload_path(instance, filename):
-    """
-    Returns the upload path for the image file based on the category
-    """
-    # Get the category name
-    category_name = instance.category.name
 
-    # Construct the upload path
-    return os.path.join('inventory_images', category_name, filename)
+class SuperCategory(models.Model):
+    
+    class Meta:
+        verbose_name = 'Super Category'
+        verbose_name_plural = 'Super Categories'
+        
+    name = models.CharField(max_length=100, help_text="Please write the name in ALL CAPITALS")
+    is_active = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='super_category/', null=True, blank=True, help_text="Please upload an image with dimensions 1080x1080.")
+
+    def __str__(self):
+        return self.name
+    
+    def save(self, *args, **kwargs):
+        # Convert the name to uppercase before saving
+        self.name = self.name.upper()
+        super(SuperCategory, self).save(*args, **kwargs)
+
 
 class Category(models.Model):
+    
     class Meta:
-        verbose_name_plural = "Caterogies"
-    name = models.CharField(max_length=100)
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+        
+    name = models.CharField(max_length=200)
+    super_category = models.ManyToManyField(SuperCategory, blank=True)
+
+    def __str__(self):
+        return self.name
+    
+    def save(self, *args, **kwargs):
+        # Convert the name to uppercase before saving
+        self.name = self.name.upper()
+        super(Category, self).save(*args, **kwargs)
+
+
+class SubCategory(models.Model):
+    
+    class Meta:
+        verbose_name = 'Sub Category'
+        verbose_name_plural = 'Sub Categories'
+        
+    name = models.CharField(max_length=200)
+    category = models.ManyToManyField(Category, blank=True)
 
     def __str__(self):
         return self.name
 
 
-class Inventory(models.Model):
+class Product(models.Model):
+    
     class Meta:
-        verbose_name_plural = "Inventories"
-
-    product_id = models.CharField(max_length=64, blank=True)
-    caption = models.CharField(max_length=500, blank=True)
-    actual_price = models.IntegerField(blank=True)
-    discount_price = models.IntegerField(blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
-    offer = models.CharField(max_length=500, blank=True)
-    images = models.ImageField(upload_to=get_image_upload_path, blank=True)
-    is_in_stock = models.BooleanField(default=True)
+        verbose_name = 'Product'
+        verbose_name_plural = 'Products'
+        
+    product_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=200)
+    product_main_image = models.URLField()
+    discounted_price = models.DecimalField(max_digits=10, decimal_places=2)
+    actual_price = models.DecimalField(max_digits=10, decimal_places=2)
+    best_seller = models.BooleanField(default=False)
+    description = models.JSONField(default=list)  # Store description as a list of strings
+    images = models.JSONField(default=list)  # Store multiple image URLs as a list
+    rating = models.DecimalField(max_digits=3, decimal_places=2)
+    number_reviews = models.PositiveIntegerField()
+    availability = models.CharField(max_length=20)
+    super_category = models.ForeignKey(SuperCategory, on_delete=models.CASCADE, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
+    SubCategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=True, null=True)
+    tags = models.JSONField(default=list)  # If using Django version >= 3.1, otherwise use TextField
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "{}-{}".format(self.product_id, self.caption)
+        return self.name
 
-@receiver(pre_delete, sender=Inventory)
-def inventory_image_delete(sender, instance, **kwargs):
-    """
-    Deletes associated image file from filesystem
-    when Inventory object is deleted.
-    """
-    # Get the image path
-    image_path = instance.images.path
+import os
 
-    # Check if the file exists and delete it
-    if os.path.isfile(image_path):
-        os.remove(image_path)
+def get_image_upload_path(instance, filename):
+    """
+    Returns the upload path for the image file based on the model name
+    """
+    # Get the model name
+    model_name = instance.__class__.__name__
+
+    # Construct the upload path
+    return os.path.join('dropdown_images', model_name, filename)

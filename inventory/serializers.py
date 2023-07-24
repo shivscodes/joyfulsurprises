@@ -1,16 +1,27 @@
 from rest_framework import serializers
-from .models import Category, Inventory
+from .models import SuperCategory, Category, SubCategory, Product
 
+class SubCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubCategory
+        fields = ['name']
 
 class CategorySerializer(serializers.ModelSerializer):
+    subcategories = SubCategorySerializer(many=True, read_only=True)
+
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['name', 'subcategories']
 
-
-class InventorySerializer(serializers.ModelSerializer):
-    category = CategorySerializer()
+class SuperCategorySerializer(serializers.ModelSerializer):
+    categories = CategorySerializer(many=True, read_only=True)
 
     class Meta:
-        model = Inventory
+        model = SuperCategory
+        fields = ['name', 'categories']
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
         fields = '__all__'
