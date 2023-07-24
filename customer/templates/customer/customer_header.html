@@ -108,62 +108,34 @@
     <div class="hamburger-menu-container">
       <div class="hamburger-menu-content">
         <div class="close-mark"><i class="fa-solid fa-xmark"></i></div>
+        {% for superCategory in drop_down_data.super_categories %}
+        {% if superCategory.is_active %}
         <div class="ham-item">
           <div class="ham-item-name">
-            RAKHI
+            {{ superCategory.name }}
             <i id="plus" class="fa-solid fa-plus"></i>
             <i id="minus" class="fa-solid fa-minus"></i>
           </div>
           <div class="ham-dropdown-options">
+            {% for category in superCategory.categories %}
             <div class="ham-category">
-              <h2 class="ham-category-title">By Type</h2>
+              <h2 class="ham-category-title">{{ category.name }}</h2>
+              {% if category.sub_categories %}
               <ul class="ham-options">
-                <li>Option 1</li>
-                <li>Option 2</li>
-                <li>Option 3</li>
+                {% for subCategory in category.sub_categories %}
+                  <li>{{ subCategory.name }}</li>
+                {% endfor %}
               </ul>
+              {% endif %}
             </div>
-            <div class="ham-category">
-              <h2 class="ham-category-title">Digital Gifts</h2>
-              <ul class="ham-options">
-                <li>Option 1</li>
-                <li>Option 2</li>
-                <li>Option 3</li>
-              </ul>
-            </div>
+            {% endfor %}
             <div class="ham-image">
-              <img src="/static/images/birthday.jpg" alt="Image" />
+              <img src="{{ superCategory.image_url }}" alt="Image" />
             </div>
           </div>
         </div>
-        <div class="ham-item">
-          <div class="ham-item-name">
-            BIRTHDAY
-            <i id="plus" class="fa-solid fa-plus"></i>
-            <i id="minus" class="fa-solid fa-minus"></i>
-          </div>
-          <div class="ham-dropdown-options">
-            <div class="ham-category">
-              <h2 class="ham-category-title">By Type</h2>
-              <ul class="ham-options">
-                <li>Option 1</li>
-                <li>Option 2</li>
-                <li>Option 3</li>
-              </ul>
-            </div>
-            <div class="ham-category">
-              <h2 class="ham-category-title">Digital Gifts</h2>
-              <ul class="ham-options">
-                <li>Option 1</li>
-                <li>Option 2</li>
-                <li>Option 3</li>
-              </ul>
-            </div>
-            <div class="ham-image">
-              <img src="/static/images/Mugs/mug1.1.jpg" alt="Image" />
-            </div>
-          </div>
-        </div>
+        {% endif %}
+        {% endfor %}
       </div>
     </div>
     <!-- Hamburger Menu Content End -->

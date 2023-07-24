@@ -188,7 +188,7 @@
 }
 .options-left {
   flex: 70%;
-  margin: 2%;
+  margin: 1%;
   display: flex;
   justify-content: flex-start;
 }
@@ -313,7 +313,10 @@
   .hamburger-menu-container {
     position: relative;
   }
-
+  .ham-dropdown-options {
+    display: none;
+  }
+  
   /* Styles for the hamburger menu content */
   .hamburger-menu-content {
     position: absolute;
