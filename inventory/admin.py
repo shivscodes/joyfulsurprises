@@ -8,6 +8,7 @@ class SuperCategoryAdmin(admin.ModelAdmin):
     readonly_fields = ('image_preview',)
     list_filter = ('is_active',)
     search_fields = ('name',)
+    app_label = 'Custom Categories'
 
     def image_preview(self, obj):
         if obj.image:
@@ -63,11 +64,100 @@ class BannerAdmin(admin.ModelAdmin):
 
     banner_image_preview.allow_tags = True
     banner_image_preview.short_description = 'Banner Image Preview'
+
+
+class SubBannerAdmin(admin.ModelAdmin):
+    list_display = ('id', 'image_preview', 'active')
+    list_filter = ('active',)
+
+    def image_preview(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" alt="SubBanner {obj.id}" width="500" height="100"/>')
+        else:
+            return 'No Image'
+
+    image_preview.allow_tags = True
+    image_preview.short_description = 'Image Preview'
+
+class MobileBannerAdmin(admin.ModelAdmin):
+    list_display = ('id', 'image_preview', 'active')
+    list_filter = ('active',)
+
+    def image_preview(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" alt="SubBanner {obj.id}" width="550" height="100"/>')
+        else:
+            return 'No Image'
+
+    image_preview.allow_tags = True
+    image_preview.short_description = 'Image Preview'
+
+
     
+class LeftImageContainerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'image_preview', 'is_active')
+    list_filter = ('name','is_active',)
+
+    def image_preview(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.name}" width="100" height="150"/>')
+        else:
+            return 'No Image'
+
+    image_preview.allow_tags = True
+    image_preview.short_description = 'Image Preview'
+    
+    
+class LeftContainerSubImagesAdmin(admin.ModelAdmin):
+    list_display = ('container', 'title', 'image_preview', 'is_active')
+    list_filter = ('container', 'title', 'is_active')
+
+    def image_preview(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.title}" width="100" height="100"/>')
+        else:
+            return 'No Image'
+
+    image_preview.allow_tags = True
+    image_preview.short_description = 'Image Preview'
+
+
+class RightImageContainerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'image_preview', 'is_active')
+    list_filter = ('name','is_active',)
+
+    def image_preview(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.name}" width="100" height="150"/>')
+        else:
+            return 'No Image'
+
+    image_preview.allow_tags = True
+    image_preview.short_description = 'Image Preview'
+
+class RightContainerSubImagesAdmin(admin.ModelAdmin):
+    list_display = ('container', 'title', 'image_preview', 'is_active')
+    list_filter = ('container', 'title', 'is_active')
+
+    def image_preview(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.title}" width="100" height="100"/>')
+        else:
+            return 'No Image'
+
+    image_preview.allow_tags = True
+    image_preview.short_description = 'Image Preview'
+
 
 admin.site.register(SuperCategory, SuperCategoryAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(SubCategory, SubCategoryAdmin)
-admin.site.register(Product)
 admin.site.register(CircleCategory, CircleCategoryAdmin)
 admin.site.register(MainBanner,BannerAdmin)
+admin.site.register(SubBanner,SubBannerAdmin)
+admin.site.register(MobileBanner,MobileBannerAdmin)
+admin.site.register(LeftImageContainer, LeftImageContainerAdmin)
+admin.site.register(LeftContainerSubImages, LeftContainerSubImagesAdmin)
+admin.site.register(RightImageContainer, RightImageContainerAdmin)
+admin.site.register(RightContainerSubImages, RightContainerSubImagesAdmin)
+admin.site.register(Product)

@@ -1,101 +1,86 @@
+from .helpers import get_super_categories, get_circle_categories, get_active_banners, get_subbanner, get_mobile_banners, get_left_containers, get_left_sub_images, get_right_containers,get_right_sub_images
 from django.shortcuts import render, redirect
+from django.views import View
 from .forms import RegistrationForm
-from django.contrib.auth import logout
+from django.contrib.auth import logout, authenticate, login
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 from inventory.models import *
 
-def register(request):
-    if request.method == 'POST':
+
+class RegisterView(View):
+    def get(self, request):
+        form = RegistrationForm()
+        return render(request, 'customer/customer_register.html', {'form': form})
+
+    def post(self, request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')  # Redirect to a success page
-    else:
-        form = RegistrationForm()
-    return render(request, 'customer/customer_register.html', {'form': form})
+        return render(request, 'customer/customer_register.html', {'form': form})
 
 
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
-@csrf_exempt
-def user_login(request):
-    if request.method == 'POST':
+class UserLoginView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get(self, request):
+        return render(request, 'customer/customer_login.html')
+
+    def post(self, request):
         email = request.POST['email']
         password = request.POST['password']
         user = authenticate(request, email=email, password=password)
-        
+
         if user is not None:
             login(request, user)
-            return redirect('home')  # Replace 'home' with the name of your home page URL pattern
+            # Replace 'home' with the name of your home page URL pattern
+            return redirect('home')
         else:
             error_message = "Invalid username or password. Please try again."
             return render(request, 'login.html', {'error_message': error_message})
-    
-    return render(request, 'customer/customer_login.html')
-    
-def user_logout(request):
-    logout(request)
-    return redirect('home')
 
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from inventory.models import SuperCategory, CircleCategory, MainBanner
-from inventory.serializers import SuperCategorySerializer, CircleCategorySerializer, MainBannerSerializer
-from django.db.models import Prefetch
-import json
 
-@api_view(['GET'])
-def home(request, **kwargs):
-    # Fetch all the SuperCategory objects along with related Categories and Subcategories
-    super_categories = SuperCategory.objects.prefetch_related('category_set__subcategory_set').all()
+class UserLogoutView(View):
+    def get(self, request):
+        logout(request)
+        # Replace 'home' with the name of your home page URL pattern
+        return redirect('home')
 
-    data = {
-        "super_categories": []
-    }
 
-    for super_category in super_categories:
-        super_category_data = {
-            "name": super_category.name,
-            "is_active": super_category.is_active,
-            "image_url": super_category.image.url if super_category.image else None,
-            "categories": []
+class HomeView(View):
+    def get(self, request, **kwargs):
+        drop_down_data = get_super_categories()
+        circle_data = get_circle_categories()
+        banner_data = get_active_banners()
+        subbanner = get_subbanner()
+        mobilebanner = get_mobile_banners()
+        left_container = get_left_containers()
+        left_sub_imgs = get_left_sub_images()
+        right_container = get_right_containers()
+        right_sub_imgs = get_right_sub_images()
+        
+        context = {
+            "drop_down_data": drop_down_data,
+            "circle_data": circle_data,
+            "banner_data": banner_data,
+            "subbanner": subbanner,
+            "mobilebanner": mobilebanner,
+            "left_container": left_container,
+            "left_sub_imgs": left_sub_imgs,
+            "right_container": right_container,
+            "right_sub_imgs": right_sub_imgs,
         }
 
-        for category in super_category.category_set.all():
-            category_data = {
-                "name": category.name,
-                "sub_categories": []
-            }
+        return render(request, 'customer/customer_landing.html', context)
 
-            for sub_category in category.subcategory_set.all():
-                sub_category_data = {"name": sub_category.name}
-                category_data["sub_categories"].append(sub_category_data)
-
-            super_category_data["categories"].append(category_data)
-
-        data["super_categories"].append(super_category_data)
-
-    # Convert the final_data list to a JSON object
-    drop_down_data = data
-    # Now you can access and use json_data as a JSON object
-    
-    # Retrieve all CircleCategory objects from the database
-    circle_categories = CircleCategory.objects.all()
-    # Pass the queryset to the serializer to convert the objects into JSON data
-    serializer = CircleCategorySerializer(circle_categories, many=True)
-    circle = serializer.data
-    circle_data = json.loads(json.dumps(circle))
-    
-    active_banners = MainBanner.objects.filter(active=True)
-    banner = MainBannerSerializer(active_banners, many=True)
-    banner = banner.data
-    banner_data = json.loads(json.dumps(banner))
-    
-    return render(request, 'customer/customer_landing.html',{'drop_down_data':drop_down_data,'circle_data':circle_data,'banner_data':banner_data})
 
 def product(request, **kwargs):
     return render(request, 'customer/product.html')
+
 
 def product_display(request, **kwargs):
     return render(request, 'customer/customer_home.html')

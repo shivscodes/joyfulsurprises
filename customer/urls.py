@@ -1,12 +1,13 @@
 from django.urls import path
-from .views import register, user_login, user_logout, home, product, product_display
+from .views import RegisterView, UserLoginView, UserLogoutView, HomeView
+from .views import  product, product_display
 
 urlpatterns = [
-    path('register/', register, name='register'),
-    path("", home, name="home"),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', UserLoginView.as_view(), name='login'),
+    path('logout/', UserLogoutView.as_view(), name='user_logout'),
+    path("", HomeView.as_view(), name="home"),
     path("product/", product, name="product"),
     path("buy/", product_display, name="product_display"),
-    path('login', user_login, name='login'),
-    path('user_logout', user_logout, name='user_logout'),
     # Add your other app URLs here
 ]

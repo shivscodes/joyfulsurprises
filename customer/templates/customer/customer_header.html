@@ -81,18 +81,16 @@
                   {% for category in superCategory.categories %}
                     <div class="dropdown-category">
                       <p class="dropdown-category-title">{{ category.name }}</p>
-                      {% if category.sub_categories %}
                       <ul class="category-list">
                         {% for subCategory in category.sub_categories %}
                           <li>{{ subCategory.name }}</li>
                         {% endfor %}
                       </ul>
-                      {% endif %}
                     </div>
                   {% endfor %}
                 </div>
                 <div class="options-right">
-                  <img src="{{ superCategory.image_url }}" alt="Image" />
+                  <img src="{{ superCategory.image_url }}" alt="Image" loading="lazy" />
                 </div>
               </div>
             </div>
@@ -130,7 +128,7 @@
             </div>
             {% endfor %}
             <div class="ham-image">
-              <img src="{{ superCategory.image_url }}" alt="Image" />
+              <img src="{{ superCategory.image_url }}" alt="Image" loading="lazy" />
             </div>
           </div>
         </div>

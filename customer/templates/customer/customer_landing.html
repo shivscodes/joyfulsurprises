@@ -33,18 +33,24 @@
         <button onclick="showPreviousImage()">&#8249;</button>
         <button onclick="showNextImage()">&#8250;</button>
       </div>
-      <{% for banner in banner_data %}
-      <img src='{{ banner.image }}' alt='{{ banner.alternate_text }}' {% if index == 0 %}class="active"{% endif %}>
+      {% for banner in banner_data %}
+      {% if forloop.first %}
+      <!-- First image loads immediately with 'eager' -->
+      <img src='{{ banner.image }}' alt='{{ banner.alternate_text }}' class="active" loading="eager">
+    {% else %}
+      <!-- Other images load lazily with 'lazy' -->
+      <img src='{{ banner.image }}' alt='{{ banner.alternate_text }}' loading="eager">
+    {% endif %}
       {% endfor %}
       <!-- Add more images here -->
     </div>
     <!-- Banner End -->
     <!-- Images Below Banner Start -->
     <div class="image-container">
-      <img src="/static/images/sub-banner.jpg" alt="Image 1" />
-      <img src="/static/images/sub-banner.jpg" alt="Image 2" />
-      <img src="/static/images/sub-banner.jpg" alt="Image 3" />
-    </div>
+    {% for sub_banner_id, sub_banner_data in subbanner.items %}
+        <img src="{{ sub_banner_data.image_url }}" alt="{{ sub_banner_data.alternate_text }}" loading="lazy" />
+        {% endfor %}
+      </div>
     <!-- Images Below Banner End -->
     <!-- Find Gifts Faster Start -->
     <div class="gift-finder">
@@ -71,107 +77,61 @@
     <!-- Grid with left image -type-one start -->
     <div class="container-type-one">
       <div class="top-type-one">
-        <div class="name-type-one">Rakhi</div>
+        {% for container_id, container_data in left_container.items %}
+          <div class="name-type-one">{{ container_data.name }}</div>
+        {% endfor %}
         <button class="view-button-type-one">View All</button>
       </div>
       <div class="content-type-one">
         <div class="left-column-type-one">
-          <img src="/static/images/side-banner.jpg" alt="Image 1" />
+          {% for container_id, container_data in left_container.items %}
+            <img src="{{ container_data.image_url }}" alt="{{ container_data.alternate_text }}" loading="lazy" />
+          {% endfor %}
         </div>
         <div class="right-column-type-one">
-          <div class="row-type-one">
-            <div class="grid-container-type-one">
-              <img src="/static/images/product-banner.jpg" alt="Image 2" />
-              <h4 class="text-type-one">Rakhi Sets</h4>
+          {% for sub_img_id, sub_img_data in left_sub_imgs.items %}
+            <div class="row-type-one">
+              <div class="grid-container-type-one">
+                <img src="{{ sub_img_data.image_url }}" alt="{{ sub_img_data.alternate_text }}" loading="lazy" />
+                <h4 class="text-type-one">{{ sub_img_data.title }}</h4>
+              </div>
             </div>
-          </div>
-          <div class="row-type-one">
-            <div class="grid-container-type-one">
-              <img src="/static/images/product-banner.jpg" alt="Image 3" />
-              <h4 class="text-type-one">Rakhi & Chocolates</h4>
-            </div>
-          </div>
-          <div class="row-type-one">
-            <div class="grid-container-type-one">
-              <img src="/static/images/product-banner.jpg" alt="Image 4" />
-              <h4 class="text-type-one">Rakhi & Dry Fruits</h4>
-            </div>
-          </div>
-          <div class="row-type-one">
-            <div class="grid-container-type-one">
-              <img src="/static/images/product-banner.jpg" alt="Image 5" />
-              <h4 class="text-type-one">Rakhi & Personalized Gifts</h4>
-            </div>
-          </div>
-          <div class="row-type-one">
-            <div class="grid-container-type-one">
-              <img src="/static/images/product-banner.jpg" alt="Image 6" />
-              <h4 class="text-type-one">Rakhi & Mug</h4>
-            </div>
-          </div>
-          <div class="row-type-one">
-            <div class="grid-container-type-one">
-              <img src="/static/images/product-banner.jpg" alt="Image 7" />
-              <h4 class="text-type-one">Rakhi & Sweets</h4>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
     <!-- Grid with left image -type-one End -->
     <!-- Mobile extra banner Start -->
     <div class="mobile-extra-banner">
-      <img src="/static/images/egift-banner.jpg" alt="Mobile Extra Banner" />
+      {% for mobile_banner_id, mobile_banner_data in mobilebanner.items %}
+        <img src="{{ mobile_banner_data.image_url }}" alt="{{ mobile_banner_data.alternate_text }}" loading="lazy" />
+      {% endfor %}
       <!-- Add more images here -->
     </div>
     <!-- Mobile extra banner End -->
     <!-- Grid with right image -type-two start -->
     <div class="container-type-two">
       <div class="top-type-two">
-        <div class="name-type-two">Name A Star</div>
+        {% for container_id, container_data in right_container.items %}
+          <div class="name-type-one">{{ container_data.name }}</div>
+        {% endfor %}
         <button class="view-button-type-two">View All</button>
       </div>
       <div class="content-type-two">
         <div class="left-column-type-two">
-          <div class="row-type-two">
-            <div class="grid-container-type-two">
-              <img src="/static/images/product-banner.jpg" alt="Image 2" />
-              <h4 class="text-type-two">Rakhi Sets</h4>
+          {% for sub_img_id, sub_img_data in right_sub_imgs.items %}
+            <div class="row-type-one">
+              <div class="grid-container-type-one">
+                <img src="{{ sub_img_data.image_url }}" alt="{{ sub_img_data.alternate_text }}" loading="lazy" />
+                <h4 class="text-type-one">{{ sub_img_data.title }}</h4>
+              </div>
             </div>
-          </div>
-          <div class="row-type-two">
-            <div class="grid-container-type-two">
-              <img src="/static/images/product-banner.jpg" alt="Image 3" />
-              <h4 class="text-type-two">Rakhi & Chocolates</h4>
-            </div>
-          </div>
-          <div class="row-type-two">
-            <div class="grid-container-type-two">
-              <img src="/static/images/product-banner.jpg" alt="Image 4" />
-              <h4 class="text-type-two">Rakhi & Dry Fruits</h4>
-            </div>
-          </div>
-          <div class="row-type-two">
-            <div class="grid-container-type-two">
-              <img src="/static/images/product-banner.jpg" alt="Image 5" />
-              <h4 class="text-type-two">Rakhi & Personalized Gifts</h4>
-            </div>
-          </div>
-          <div class="row-type-two">
-            <div class="grid-container-type-two">
-              <img src="/static/images/product-banner.jpg" alt="Image 6" />
-              <h4 class="text-type-two">Rakhi & Mug</h4>
-            </div>
-          </div>
-          <div class="row-type-two">
-            <div class="grid-container-type-two">
-              <img src="/static/images/product-banner.jpg" alt="Image 7" />
-              <h4 class="text-type-two">Rakhi & Sweets</h4>
-            </div>
-          </div>
+          {% endfor %}
         </div>
         <div class="right-column-type-two">
-          <img src="/static/images/side-banner.jpg" alt="Image 1" />
+          {% for container_id, container_data in right_container.items %}
+            <img src="{{ container_data.image_url }}" alt="{{ container_data.alternate_text }}" loading="lazy" />
+          {% endfor %}
         </div>
       </div>
     </div>
