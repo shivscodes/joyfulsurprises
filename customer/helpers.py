@@ -1,4 +1,4 @@
-from inventory.models import SuperCategory, CircleCategory, MainBanner, SubBanner, MobileBanner, LeftImageContainer, LeftContainerSubImages, RightImageContainer, RightContainerSubImages
+from inventory.models import SuperCategory, CircleCategory, MainBanner, SubBanner, MobileBanner, LeftImageContainer, LeftContainerSubImages, RightImageContainer, RightContainerSubImages, Product
 from inventory.serializers import CircleCategorySerializer, MainBannerSerializer
 import json
 
@@ -116,3 +116,38 @@ def get_right_sub_images():
         }
 
     return right_sub_images_urls
+
+
+def get_product_data():
+    # Fetch all products from the database
+    all_products = Product.objects.all()
+
+    # Create a list to store the data of all products as dictionaries
+    products_data_list = []
+
+    # Loop through each product and convert it into a dictionary
+    for product in all_products:
+        product_data = {
+            'product_id': str(product.product_id),
+            'name': product.name,
+            'product_main_image': product.product_main_image.url,
+            'sub_image1': product.sub_image1.url if product.sub_image1 else None,
+            'sub_image2': product.sub_image2.url if product.sub_image2 else None,
+            'sub_image3': product.sub_image3.url if product.sub_image3 else None,
+            'sub_image4': product.sub_image4.url if product.sub_image4 else None,
+            'sub_image5': product.sub_image5.url if product.sub_image5 else None,
+            'discounted_price': int(product.discounted_price),
+            'actual_price': int(product.actual_price),
+            'best_seller': product.best_seller,
+            'description': product.description,
+            'rating': int(product.rating) if product.rating else None,
+            'number_reviews': product.number_reviews,
+            'stock': product.stock,
+            'SubCategory': [sub_category.name for sub_category in product.SubCategory.all()],
+            'created_at': product.created_at.isoformat(),
+            'updated_at': product.updated_at.isoformat(),
+        }
+
+        products_data_list.append(product_data)
+
+    return products_data_list

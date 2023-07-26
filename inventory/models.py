@@ -8,8 +8,8 @@ import uuid
 class SuperCategory(models.Model):
     
     class Meta:
-        verbose_name = 'Super Category'
-        verbose_name_plural = 'Super Categories'
+        verbose_name = '1 Super Category'
+        verbose_name_plural = '1 Super Categories'
         
     name = models.CharField(max_length=100, help_text="Please write the name in ALL CAPITALS")
     is_active = models.BooleanField(default=True)
@@ -27,8 +27,8 @@ class SuperCategory(models.Model):
 class Category(models.Model):
     
     class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        verbose_name = '2 Category'
+        verbose_name_plural = '2 Categories'
         
     name = models.CharField(max_length=200)
     super_category = models.ManyToManyField(SuperCategory, blank=True)
@@ -45,8 +45,8 @@ class Category(models.Model):
 class SubCategory(models.Model):
     
     class Meta:
-        verbose_name = 'Sub Category'
-        verbose_name_plural = 'Sub Categories'
+        verbose_name = '3 Sub Category'
+        verbose_name_plural = '3 Sub Categories'
         
     name = models.CharField(max_length=200)
     category = models.ManyToManyField(Category, blank=True)
@@ -144,6 +144,12 @@ class RightContainerSubImages(models.Model):
     title = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
 
+
+
+
+
+
+
 class Product(models.Model):
     
     class Meta:
@@ -152,19 +158,20 @@ class Product(models.Model):
         
     product_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
-    product_main_image = models.URLField()
+    product_main_image = models.ImageField(upload_to='Product/MainImage/')
+    sub_image1 = models.ImageField(upload_to='Product/SubImages/', blank=True)
+    sub_image2 = models.ImageField(upload_to='Product/SubImages/', blank=True)
+    sub_image3 = models.ImageField(upload_to='Product/SubImages/', blank=True)
+    sub_image4 = models.ImageField(upload_to='Product/SubImages/', blank=True)
+    sub_image5 = models.ImageField(upload_to='Product/SubImages/', blank=True)
     discounted_price = models.DecimalField(max_digits=10, decimal_places=2)
     actual_price = models.DecimalField(max_digits=10, decimal_places=2)
     best_seller = models.BooleanField(default=False)
-    description = models.JSONField(default=list)  # Store description as a list of strings
-    images = models.JSONField(default=list)  # Store multiple image URLs as a list
-    rating = models.DecimalField(max_digits=3, decimal_places=2)
-    number_reviews = models.PositiveIntegerField()
-    availability = models.CharField(max_length=20)
-    super_category = models.ForeignKey(SuperCategory, on_delete=models.CASCADE, blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
-    SubCategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=True, null=True)
-    tags = models.JSONField(default=list)  # If using Django version >= 3.1, otherwise use TextField
+    description = models.JSONField(default=list)
+    rating = models.DecimalField(max_digits=3, decimal_places=2, null=True)
+    number_reviews = models.PositiveIntegerField(null=True)
+    stock = models.CharField(max_length=20, default='100', null=True)
+    SubCategory = models.ManyToManyField(SubCategory, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
