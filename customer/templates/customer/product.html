@@ -15,38 +15,48 @@
   {% include 'customer/customer_header.html' %}
   <body>
     <div class="product-section">
-      <div class="product-img">
-        <div class="img-display">
-          <div class="img-large">
+      <div class="img-section">
+        <div class="image-container">
+          <div class="thumbnail-images">
             {% for img in images_data %}
+            {% if img.sub_image1 %}
+            <img src="{{ img.sub_image1 }}" alt=" Sub Image 1" onclick="updateLargeImage('{{ img.sub_image1 }}')">
+            {% endif %}
+            {% endfor %}
+            {% for img in images_data %}
+            {% if img.sub_image1 %}
+            <img src="{{ img.sub_image1 }}" alt=" Sub Image 1" onclick="updateLargeImage('{{ img.sub_image1 }}')">
+            {% endif %}
+            {% endfor %}
+            {% for img in images_data %}
+            {% if img.sub_image1 %}
+            <img src="{{ img.product_main_image }}" alt=" Sub Image 1" onclick="updateLargeImage('{{ img.product_main_image }}')">
+            {% endif %}
+            {% endfor %}
+            {% for img in images_data %}
+            {% if img.sub_image1 %}
+            <img src="{{ img.product_main_image }}" alt=" Sub Image 1" onclick="updateLargeImage('{{ img.product_main_image }}')">
+            {% endif %}
+            {% endfor %}
+            {% for img in images_data %}
+            {% if img.sub_image1 %}
+            <img src="{{ img.product_main_image }}" alt=" Sub Image 1" onclick="updateLargeImage('{{ img.product_main_image }}')">
+            {% endif %}
+            {% endfor %}
+          </div>
+          <div class="largeImage-container">
+            <div class="large-img">
+              {% for img in images_data %}
                 <img id="largeImage" src="{{ img.product_main_image }}" alt=" Sub Image 1">
               {% endfor %}
+            </div>
             <div class="guarantee">
               <img src="/static/images/smile safe support.png" alt="smile" />
             </div>
-          </div>
-          <div class="thumbnail-images">
-            <div class="thumb-scroll">
-              {% for img in images_data %}
-              {% if img.sub_image1 %}
-              <img src="{{ img.sub_image1 }}" alt=" Sub Image 1" onclick="updateLargeImage('{{ img.sub_image1 }}')">
-              {% endif %}
-              {% endfor %}
-              {% for img in images_data %}
-              {% if img.sub_image1 %}
-              <img src="{{ img.sub_image1 }}" alt=" Sub Image 1" onclick="updateLargeImage('{{ img.sub_image1 }}')">
-              {% endif %}
-              {% endfor %}
-              {% for img in images_data %}
-              {% if img.sub_image1 %}
-              <img src="{{ img.product_main_image }}" alt=" Sub Image 1" onclick="updateLargeImage('{{ img.product_main_image }}')">
-              {% endif %}
-              {% endfor %}
-            </div>
-          </div>
+          </div> 
         </div>
       </div>
-      <div class="product-info">
+      <div class="description-section">
         {% for img in images_data %}
         <div class="detail-info">
           <h1>{{ img.name }}</h1>
@@ -118,176 +128,13 @@
             </li>
           </ul>
         </div>
+        <!-- Add more content here as needed -->
       </div>
     </div>
-    <div class="product-grid">
-      <div class="product-item" data-product-id="1">
-        <div class="best-seller-tag">Best Seller</div>
-        <div class="product-image">
-          <!-- Add your image(s) here with swipe functionality -->
-          <img src="/static/images/product-banner.jpg" alt="Product Image">
-        </div>
-        <div class="favorite-icon">
-          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
-        </div>
-        <div class="product-price">₹999</div>
-        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
-        <div class="action-buttons">
-          <button class="action-cart">Add to Cart</button>
-          <button class="action-buy">Buy Now</button>
-        </div>
-      </div>
-      
-      <div class="product-item" data-product-id="2">
-        <div class="best-seller-tag">Best Seller</div>
-        <div class="product-image">
-          <!-- Add your image(s) here with swipe functionality -->
-          <img src="/static/images/product-banner.jpg" alt="Product Image">
-        </div>
-        <div class="favorite-icon">
-          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
-        </div>
-        <div class="product-price">₹999</div>
-        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
-        <div class="action-buttons">
-          <button class="action-cart">Add to Cart</button>
-          <button class="action-buy">Buy Now</button>
-        </div>
-      </div>
-      <div class="product-item" data-product-id="3">
-        <div class="best-seller-tag">Best Seller</div>
-        <div class="product-image">
-          <!-- Add your image(s) here with swipe functionality -->
-          <img src="/static/images/product-banner.jpg" alt="Product Image">
-        </div>
-        <div class="favorite-icon">
-          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
-        </div>
-        <div class="product-price">₹999</div>
-        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
-        <div class="action-buttons">
-          <button class="action-cart">Add to Cart</button>
-          <button class="action-buy">Buy Now</button>
-        </div>
-      </div>
-      
-      <div class="product-item" data-product-id="4">
-        <div class="best-seller-tag">Best Seller</div>
-        <div class="product-image">
-          <!-- Add your image(s) here with swipe functionality -->
-          <img src="/static/images/product-banner.jpg" alt="Product Image">
-        </div>
-        <div class="favorite-icon">
-          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
-        </div>
-        <div class="product-price">₹999</div>
-        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
-        <div class="action-buttons">
-          <button class="action-cart">Add to Cart</button>
-          <button class="action-buy">Buy Now</button>
-        </div>
-      </div>
-      <div class="product-item" data-product-id="5">
-        <div class="best-seller-tag">Best Seller</div>
-        <div class="product-image">
-          <!-- Add your image(s) here with swipe functionality -->
-          <img src="/static/images/product-banner.jpg" alt="Product Image">
-        </div>
-        <div class="favorite-icon">
-          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
-        </div>
-        <div class="product-price">₹999</div>
-        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
-        <div class="action-buttons">
-          <button class="action-cart">Add to Cart</button>
-          <button class="action-buy">Buy Now</button>
-        </div>
-      </div>
-      
-      <div class="product-item" data-product-id="6">
-        <div class="best-seller-tag">Best Seller</div>
-        <div class="product-image">
-          <!-- Add your image(s) here with swipe functionality -->
-          <img src="/static/images/product-banner.jpg" alt="Product Image">
-        </div>
-        <div class="favorite-icon">
-          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
-        </div>
-        <div class="product-price">₹999</div>
-        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
-        <div class="action-buttons">
-          <button class="action-cart">Add to Cart</button>
-          <button class="action-buy">Buy Now</button>
-        </div>
-      </div>
-      <div class="product-item" data-product-id="7">
-        <div class="best-seller-tag">Best Seller</div>
-        <div class="product-image">
-          <!-- Add your image(s) here with swipe functionality -->
-          <img src="/static/images/product-banner.jpg" alt="Product Image">
-        </div>
-        <div class="favorite-icon">
-          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
-        </div>
-        <div class="product-price">₹999</div>
-        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
-        <div class="action-buttons">
-          <button class="action-cart">Add to Cart</button>
-          <button class="action-buy">Buy Now</button>
-        </div>
-      </div>
-      
-      <div class="product-item" data-product-id="8">
-        <div class="best-seller-tag">Best Seller</div>
-        <div class="product-image">
-          <!-- Add your image(s) here with swipe functionality -->
-          <img src="/static/images/product-banner.jpg" alt="Product Image">
-        </div>
-        <div class="favorite-icon">
-          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
-        </div>
-        <div class="product-price">₹999</div>
-        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
-        <div class="action-buttons">
-          <button class="action-cart">Add to Cart</button>
-          <button class="action-buy">Buy Now</button>
-        </div>
-      </div>
-      <div class="product-item" data-product-id="9">
-        <div class="best-seller-tag">Best Seller</div>
-        <div class="product-image">
-          <!-- Add your image(s) here with swipe functionality -->
-          <img src="/static/images/product-banner.jpg" alt="Product Image">
-        </div>
-        <div class="favorite-icon">
-          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
-        </div>
-        <div class="product-price">₹999</div>
-        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
-        <div class="action-buttons">
-          <button class="action-cart">Add to Cart</button>
-          <button class="action-buy">Buy Now</button>
-        </div>
-      </div>
-      
-      <div class="product-item" data-product-id="10">
-        <div class="best-seller-tag">Best Seller</div>
-        <div class="product-image">
-          <!-- Add your image(s) here with swipe functionality -->
-          <img src="/static/images/product-banner.jpg" alt="Product Image">
-        </div>
-        <div class="favorite-icon">
-          <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
-        </div>
-        <div class="product-price">₹999</div>
-        <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
-        <div class="action-buttons">
-          <button class="action-cart">Add to Cart</button>
-          <button class="action-buy">Buy Now</button>
-        </div>
-      </div>
-      <!-- Add more product items here -->
-    </div> 
+    <div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam vero expedita odit quis modi dicta aspernatur vitae enim voluptatibus pariatur quibusdam non dolores asperiores quaerat ullam officiis quisquam, deleniti minus assumenda impedit odio ea animi? Asperiores, velit quasi distinctio culpa, error fugit quae eos minima dolor, voluptate quidem reiciendis a repudiandae itaque iusto architecto numquam tempora dolorum provident facere. Nam ab optio quis architecto sit eveniet enim dolores nihil, eligendi provident esse repudiandae iure! Praesentium labore incidunt, facilis, omnis nesciunt iusto repudiandae pariatur harum quasi est obcaecati blanditiis eligendi eveniet nobis numquam qui veritatis magnam ab corrupti sed vel voluptatibus veniam facere dignissimos? Inventore asperiores porro, vero reiciendis corrupti quasi unde voluptas vitae ut ex quos consequuntur quibusdam culpa consectetur. Dicta aliquam maiores ducimus, harum fugiat dolorum soluta ad placeat ex, cum illum accusantium enim natus officia facilis! Illo nihil doloremque, dolorem nesciunt possimus repudiandae fugit tempora corporis ea ducimus. Omnis, nobis! Vel distinctio quo molestiae perspiciatis illum odio veritatis ad, odit autem. Vitae veniam fugiat natus harum excepturi. Ut temporibus quas aliquam maiores optio culpa perspiciatis! Magni, sunt voluptas error maxime eaque ut dignissimos corporis animi nesciunt neque odit laborum officiis repellat quaerat magnam ad cum distinctio voluptatibus incidunt laboriosam, commodi dicta blanditiis ex natus? Asperiores placeat qui culpa reprehenderit optio mollitia amet enim sed omnis deleniti quis commodi quod tempore doloribus quo reiciendis dolor, labore, velit laborum cumque excepturi quas? Voluptates fugit assumenda, exercitationem voluptate corporis quaerat reiciendis. Deserunt veniam vitae, maxime laudantium, accusantium ab voluptatem rerum sunt qui nihil officiis, quae delectus! Unde praesentium neque, molestiae porro reprehenderit voluptatum id laboriosam ipsum repellendus rem accusamus perferendis! Laborum veniam magnam, aspernatur dignissimos sequi provident illum, quidem nemo, velit asperiores consequuntur molestiae quisquam facere similique tempora maiores ex molestias. Excepturi eos molestiae quaerat ex, maiores id possimus ducimus impedit expedita, nihil itaque culpa nobis architecto et corporis nam ipsa ea incidunt libero voluptates quas. Eveniet rem harum recusandae molestias error neque. Sapiente voluptas, sequi eos repellat facere dignissimos, veritatis possimus delectus quidem doloremque placeat explicabo? Impedit iure nostrum quasi blanditiis obcaecati voluptas quae sit delectus, laudantium quaerat ut sequi eligendi corporis minus accusantium perferendis, necessitatibus culpa iusto ea ipsum nulla! Et reiciendis ex earum fugiat deleniti perspiciatis repudiandae labore ullam reprehenderit exercitationem. Possimus quibusdam quas culpa ipsam maiores commodi distinctio, totam earum dolores doloremque itaque, quia illo officiis dolorem ut in similique obcaecati debitis! Explicabo, rem. Enim, molestiae placeat culpa eos ab nobis sunt doloremque, provident quidem at, eius tempora quisquam veniam unde consequatur accusantium beatae cum hic modi sit voluptatum consequuntur omnis? Beatae quis consequatur itaque saepe, hic expedita, ratione molestias libero eos nisi repellat numquam ipsum minima laboriosam neque, totam explicabo porro magnam placeat. Hic amet, animi incidunt assumenda, commodi earum, dolorum molestias dolor blanditiis accusamus autem delectus unde at harum alias magni illo voluptatum officiis odit officia consequatur! Velit possimus temporibus cupiditate praesentium distinctio earum officiis. Quae aspernatur est fuga voluptatum id similique cum, maiores dolorum. Numquam excepturi eos cum nisi dolorum aliquam quae rem enim!
+      </p>
+    </div>
   </body>
   {% include 'customer/customer_footer.html' %}
 </html>
