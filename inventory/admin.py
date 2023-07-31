@@ -12,7 +12,7 @@ class SuperCategoryAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.name}" width="100" height="100"/>')
+            return mark_safe(f'<img src="{obj.image}" alt="{obj.name}" width="100" height="100"/>')
         else:
             return '(No image)'
         
@@ -46,7 +46,7 @@ class CircleCategoryAdmin(admin.ModelAdmin):
 
     def circle_image_preview(self, obj):
         if obj.circle_image:
-            return mark_safe(f'<img src="{obj.circle_image.url}" alt="{obj.alt_text}" width="100" height="100"/>')
+            return mark_safe(f'<img src="{obj.circle_image}" alt="{obj.alt_text}" width="100" height="100"/>')
         else:
             return 'No Image'
     circle_image_preview.allow_tags = True
@@ -58,7 +58,7 @@ class BannerAdmin(admin.ModelAdmin):
 
     def banner_image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.alternate_text}" width="200" height="100"/>')
+            return mark_safe(f'<img src="{obj.image}" alt="{obj.alternate_text}" width="200" height="100"/>')
         else:
             return 'No Image'
 
@@ -72,7 +72,7 @@ class SubBannerAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" alt="SubBanner {obj.id}" width="500" height="100"/>')
+            return mark_safe(f'<img src="{obj.image}" alt="SubBanner {obj.id}" width="500" height="100"/>')
         else:
             return 'No Image'
 
@@ -85,7 +85,7 @@ class MobileBannerAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" alt="SubBanner {obj.id}" width="550" height="100"/>')
+            return mark_safe(f'<img src="{obj.image}" alt="SubBanner {obj.id}" width="550" height="100"/>')
         else:
             return 'No Image'
 
@@ -100,7 +100,7 @@ class LeftImageContainerAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.name}" width="100" height="150"/>')
+            return mark_safe(f'<img src="{obj.image}" alt="{obj.name}" width="100" height="150"/>')
         else:
             return 'No Image'
 
@@ -114,7 +114,7 @@ class LeftContainerSubImagesAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.title}" width="100" height="100"/>')
+            return mark_safe(f'<img src="{obj.image}" alt="{obj.title}" width="100" height="100"/>')
         else:
             return 'No Image'
 
@@ -128,7 +128,7 @@ class RightImageContainerAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.name}" width="100" height="150"/>')
+            return mark_safe(f'<img src="{obj.image}" alt="{obj.name}" width="100" height="150"/>')
         else:
             return 'No Image'
 
@@ -141,12 +141,48 @@ class RightContainerSubImagesAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.title}" width="100" height="100"/>')
+            return mark_safe(f'<img src="{obj.image}" alt="{obj.title}" width="100" height="100"/>')
         else:
             return 'No Image'
 
     image_preview.allow_tags = True
     image_preview.short_description = 'Image Preview'
+
+
+from django.contrib import admin
+from .models import Product, ProductSubImage, ProductDescription
+from .forms import ProductForm
+
+class ProductSubImageInline(admin.StackedInline):
+    model = ProductSubImage
+    extra = 0
+    min_num = 1
+
+class ProductDescriptionInline(admin.StackedInline):
+    model = ProductDescription
+    extra = 0
+    min_num = 1
+
+from .forms import ProductTagInlineFormSet
+
+class ProductTagInline(admin.TabularInline):
+    model = ProductTag
+    formset = ProductTagInlineFormSet
+    extra = 0
+    min_num = 1
+
+class ProductAdmin(admin.ModelAdmin):
+    form = ProductForm
+    list_display = ('name', 'discounted_price', 'actual_price', 'best_seller', 'rating', 'number_reviews', 'stock')
+    list_filter = ('best_seller','name', 'discounted_price', 'actual_price', 'best_seller', 'rating', 'number_reviews', 'stock')
+    search_fields = ('name', 'rating')
+    readonly_fields = ('created_at', 'updated_at')
+    inlines = [ProductSubImageInline,ProductDescriptionInline,ProductTagInline]
+
+
+admin.site.register(Product, ProductAdmin)
+admin.site.register(ProductSubImage)
+admin.site.register(ProductDescription)
 
 
 admin.site.register(SuperCategory, SuperCategoryAdmin)
@@ -160,4 +196,3 @@ admin.site.register(LeftImageContainer, LeftImageContainerAdmin)
 admin.site.register(LeftContainerSubImages, LeftContainerSubImagesAdmin)
 admin.site.register(RightImageContainer, RightImageContainerAdmin)
 admin.site.register(RightContainerSubImages, RightContainerSubImagesAdmin)
-admin.site.register(Product)

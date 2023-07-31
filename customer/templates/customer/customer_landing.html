@@ -36,7 +36,7 @@
       {% for banner in banner_data %} {% if forloop.first %}
       <!-- First image loads immediately with 'eager' -->
       <img
-        src="https://mauveads.s3.ap-south-1.amazonaws.com/stag/Rasna+Lo.jpg"
+        src="{{ banner.image }}"
         alt="{{ banner.alternate_text }}"
         class="active"
         loading="eager"
@@ -44,7 +44,7 @@
       {% else %}
       <!-- Other images load lazily with 'lazy' -->
       <img
-        src="https://mauveads.s3.ap-south-1.amazonaws.com/stag/Tansiq.jpg"
+        src="{{ banner.image }}"
         alt="{{ banner.alternate_text }}"
         loading="eager"
       />

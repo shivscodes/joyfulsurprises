@@ -222,10 +222,17 @@ body {
 
 .content-type-one {
   display: grid;
-  grid-template-columns: 1fr 1.8fr;
-  grid-gap: 45px;
+  grid-template-columns: 0.8fr 1.8fr;
+  grid-gap: 130px;
 }
 
+.left-column-type-one {
+  width: 100%;
+  height: 100%;
+  max-width: 614px;
+  max-height: 952.09px;
+  border-radius: 5px;
+}
 .left-column-type-one img {
   width: 100%;
   height: 100%;
@@ -291,8 +298,8 @@ body {
 
 .content-type-two {
   display: grid;
-  grid-template-columns: 1.8fr 1fr;
-  grid-gap: 45px;
+  grid-template-columns: 1.8fr 0.8fr;
+  grid-gap: 130px;
 }
 
 .right-column-type-two img {
@@ -318,7 +325,6 @@ body {
 .grid-container-type-two {
   display: flex;
   flex-direction: column;
-  align-items: center;
   border-radius: 5px;
 }
 

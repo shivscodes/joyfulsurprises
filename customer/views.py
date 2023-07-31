@@ -1,4 +1,4 @@
-from .helpers import get_super_categories, get_circle_categories, get_active_banners, get_subbanner, get_mobile_banners, get_left_containers, get_left_sub_images, get_right_containers,get_right_sub_images, get_product_data
+from .helpers import get_super_categories, get_circle_categories, get_active_banners, get_subbanner, get_mobile_banners, get_left_containers, get_left_sub_images, get_right_containers,get_right_sub_images, get_product_detail_data
 from django.shortcuts import render, redirect
 from django.views import View
 from .forms import RegistrationForm
@@ -54,6 +54,7 @@ class UserLogoutView(View):
 class HomeView(View):
     def get(self, request, **kwargs):
         drop_down_data = get_super_categories()
+        #print(drop_down_data)
         circle_data = get_circle_categories()
         banner_data = get_active_banners()
         subbanner = get_subbanner()
@@ -81,10 +82,11 @@ class HomeView(View):
 class ProductView(View):
     
     def get(self, request, **kwargs):
-        images_data = get_product_data()
+        product_data = get_product_detail_data()
+        #print(product_data)
         drop_down_data = get_super_categories()
         context = {
-            "images_data": images_data,
+            "product_data": product_data,
             "drop_down_data": drop_down_data
         }
         return render(request, 'customer/product.html', context)

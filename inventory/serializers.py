@@ -40,6 +40,11 @@ class CircleCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = CircleCategory
         fields = ('id', 'circle_image', 'alt_text', 'circle_category_name')
+        
+    def to_representation(self, instance):
+        representation = super(CircleCategorySerializer, self).to_representation(instance)
+        representation['circle_image'] = instance.circle_image
+        return representation
 
 class MainBannerSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,9 +1,11 @@
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
+  margin: 5px;
   padding: 0;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 .product-section {
   display: flex;
   align-items: flex-start;
@@ -31,7 +33,6 @@ body {
   flex-direction: column;
   align-items: flex-end;
   margin-right: 10px;
-  cursor: pointer;
   height: 100%;
   overflow-y: auto;
 }
@@ -44,6 +45,7 @@ body {
   max-width: 45%;
   border-radius: 10px;
   padding: 5px;
+  cursor: pointer;
 }
 .largeImage-container{
   flex: 70%;
@@ -60,7 +62,7 @@ body {
 /* Add any additional styling as per your requirement */
 
 /* Apply underline to h2 and h4 elements */
-h1, h4 {
+h1,h2,h3{
   border-bottom: 1px solid #d5d5d5;
 }
 
@@ -127,4 +129,153 @@ h1, h4 {
 .discount-off{
   font-size: 20px;
   color: #f00f26;
+}
+
+/* ********** Product Grid ************ */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  row-gap: 30px;
+}
+
+.product-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.best-seller-tag {
+  position: absolute;
+  top: 22px;
+  left: -14px;
+  transform: rotate(-45deg);
+  background-color: #ff9800;
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.product-image input[type="range"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.product-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-out;
+}
+
+.product-image input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #ff9800;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.product-image input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #ff9800;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.product-price,
+.actual-price {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px; 
+}
+
+.action-buttons {
+  display: flex;
+  margin-top: 5px;
+  margin-right: 5px;
+  justify-content: space-around; /* Center align the buttons */
+}
+
+.action-buttons .action-cart,
+.action-buttons .action-buy {
+  padding: 10px 20px;
+  background-color: #2e3368;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.flash-card {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background-color: #f00f26;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 4px;
+  z-index: 9999;
+  animation: flash-card-appear 0.3s ease-out;
+}
+
+/* Product Preview */
+#preview-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.preview-image-container {
+  position: relative;
+  margin: 5px;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+}
+
+.fa-xs {
+  position: absolute;
+  line-height: 0.6em;
+  top: 0;
+  right: 0;
+  width: 20px; /* Adjust the width of the remove icon */
+  height: 20px; /* Adjust the height of the remove icon */
+  text-align: end;
+  cursor: pointer;
 }
