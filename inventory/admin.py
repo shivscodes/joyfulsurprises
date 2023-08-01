@@ -12,7 +12,7 @@ class SuperCategoryAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image}" alt="{obj.name}" width="100" height="100"/>')
+            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.name}" width="100" height="100"/>')
         else:
             return '(No image)'
         
@@ -46,7 +46,7 @@ class CircleCategoryAdmin(admin.ModelAdmin):
 
     def circle_image_preview(self, obj):
         if obj.circle_image:
-            return mark_safe(f'<img src="{obj.circle_image}" alt="{obj.alt_text}" width="100" height="100"/>')
+            return mark_safe(f'<img src="{obj.circle_image.url}" alt="{obj.alt_text}" width="100" height="100"/>')
         else:
             return 'No Image'
     circle_image_preview.allow_tags = True
@@ -58,7 +58,7 @@ class BannerAdmin(admin.ModelAdmin):
 
     def banner_image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image}" alt="{obj.alternate_text}" width="200" height="100"/>')
+            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.alternate_text}" width="200" height="100"/>')
         else:
             return 'No Image'
 
@@ -72,7 +72,7 @@ class SubBannerAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image}" alt="SubBanner {obj.id}" width="500" height="100"/>')
+            return mark_safe(f'<img src="{obj.image.url}" alt="SubBanner {obj.id}" width="500" height="100"/>')
         else:
             return 'No Image'
 
@@ -85,7 +85,7 @@ class MobileBannerAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image}" alt="SubBanner {obj.id}" width="550" height="100"/>')
+            return mark_safe(f'<img src="{obj.image.url}" alt="SubBanner {obj.id}" width="550" height="100"/>')
         else:
             return 'No Image'
 
@@ -100,7 +100,7 @@ class LeftImageContainerAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image}" alt="{obj.name}" width="100" height="150"/>')
+            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.name}" width="100" height="150"/>')
         else:
             return 'No Image'
 
@@ -114,7 +114,7 @@ class LeftContainerSubImagesAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image}" alt="{obj.title}" width="100" height="100"/>')
+            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.title}" width="100" height="100"/>')
         else:
             return 'No Image'
 
@@ -128,7 +128,7 @@ class RightImageContainerAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image}" alt="{obj.name}" width="100" height="150"/>')
+            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.name}" width="100" height="150"/>')
         else:
             return 'No Image'
 
@@ -141,7 +141,7 @@ class RightContainerSubImagesAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image}" alt="{obj.title}" width="100" height="100"/>')
+            return mark_safe(f'<img src="{obj.image.url}" alt="{obj.title}" width="100" height="100"/>')
         else:
             return 'No Image'
 
@@ -179,9 +179,47 @@ class ProductAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
     inlines = [ProductSubImageInline,ProductDescriptionInline,ProductTagInline]
 
+class ProductSubImageAdmin(admin.ModelAdmin):
+    list_display = ('product', 'sub_image_preview1', 'sub_image_preview2', 'sub_image_preview3', 'sub_image_preview4', 'sub_image_preview5')
+
+    def sub_image_preview1(self, obj):
+        return self._generate_image_preview(obj.sub_image1)
+
+    def sub_image_preview2(self, obj):
+        return self._generate_image_preview(obj.sub_image2)
+
+    def sub_image_preview3(self, obj):
+        return self._generate_image_preview(obj.sub_image3)
+
+    def sub_image_preview4(self, obj):
+        return self._generate_image_preview(obj.sub_image4)
+
+    def sub_image_preview5(self, obj):
+        return self._generate_image_preview(obj.sub_image5)
+
+    def _generate_image_preview(self, image_field):
+        if image_field:
+            return mark_safe(f'<img src="{image_field.url}" alt="{image_field.url}" width="100" height="100"/>')
+        else:
+            return 'No Image'
+
+    sub_image_preview1.allow_tags = True
+    sub_image_preview1.short_description = 'Sub Image 1'
+
+    sub_image_preview2.allow_tags = True
+    sub_image_preview2.short_description = 'Sub Image 2'
+
+    sub_image_preview3.allow_tags = True
+    sub_image_preview3.short_description = 'Sub Image 3'
+
+    sub_image_preview4.allow_tags = True
+    sub_image_preview4.short_description = 'Sub Image 4'
+
+    sub_image_preview5.allow_tags = True
+    sub_image_preview5.short_description = 'Sub Image 5'
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ProductSubImage)
+admin.site.register(ProductSubImage, ProductSubImageAdmin)
 admin.site.register(ProductDescription)
 
 

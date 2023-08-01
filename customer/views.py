@@ -93,4 +93,8 @@ class ProductView(View):
 
 
 def product_display(request, **kwargs):
-    return render(request, 'customer/customer_home.html')
+    drop_down_data = get_super_categories()
+    context = {
+            "drop_down_data": drop_down_data
+        }
+    return render(request, 'customer/customer_home.html', context)

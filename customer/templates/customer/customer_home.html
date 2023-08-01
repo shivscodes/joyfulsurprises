@@ -10,33 +10,8 @@
     <script src="https://kit.fontawesome.com/f7396dff9d.js" crossorigin="anonymous"></script>
     <title>Home - Joyful Surprise</title>
   </head>
-  {% include 'customer/customer_header.html' %}
   <body>
-    <div class="categories">
-      <div class="category">
-        <img src="/static/images/product-banner.jpg" alt="Birthday" />
-        <p>Birthday</p>
-      </div>
-      <div class="category">
-        <img src="/static/images/product-banner.jpg" alt="Baby Shower" />
-        <p>Baby Shower</p>
-      </div>
-      <div class="category">
-        <img src="/static/images/product-banner.jpg" alt="Category 3" />
-        <p>Category 3</p>
-      </div>
-      <div class="category">
-        <img src="/static/images/product-banner.jpg" alt="Category 4" />
-        <p>Category 4</p>
-      </div>
-      <div class="category">
-        <img src="/static/images/product-banner.jpg" alt="Category 5" />
-        <p>Category 5</p>
-      </div>
-    </div>
-
-    <div class="product-display">
-        <!-- product grid here -->
+    {% include 'customer/customer_header.html' %}
     <div class="product-grid">
       <div class="product-item" data-product-id="1">
         <div class="best-seller-tag">Best Seller</div>
@@ -47,7 +22,6 @@
         <div class="favorite-icon">
           <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
         </div>
-        <p>Wall Mounted Musician Playing Sitar Frame Figurine</p>
         <div class="product-price">₹999</div>
         <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
         <div class="action-buttons">
@@ -65,7 +39,6 @@
         <div class="favorite-icon">
           <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
         </div>
-        <p>Happy Birthday</p>
         <div class="product-price">₹999</div>
         <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
         <div class="action-buttons">
@@ -82,7 +55,6 @@
         <div class="favorite-icon">
           <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
         </div>
-        <p>Happy Birthday</p>
         <div class="product-price">₹999</div>
         <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
         <div class="action-buttons">
@@ -100,7 +72,6 @@
         <div class="favorite-icon">
           <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
         </div>
-        <p>Happy Birthday</p>
         <div class="product-price">₹999</div>
         <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
         <div class="action-buttons">
@@ -117,7 +88,6 @@
         <div class="favorite-icon">
           <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
         </div>
-        <p>Happy Birthday</p>
         <div class="product-price">₹999</div>
         <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
         <div class="action-buttons">
@@ -135,7 +105,6 @@
         <div class="favorite-icon">
           <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
         </div>
-        <p>Happy Birthday</p>
         <div class="product-price">₹999</div>
         <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
         <div class="action-buttons">
@@ -152,7 +121,6 @@
         <div class="favorite-icon">
           <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
         </div>
-        <p>Happy Birthday</p>
         <div class="product-price">₹999</div>
         <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
         <div class="action-buttons">
@@ -170,7 +138,6 @@
         <div class="favorite-icon">
           <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
         </div>
-        <p>Happy Birthday</p>
         <div class="product-price">₹999</div>
         <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
         <div class="action-buttons">
@@ -187,7 +154,6 @@
         <div class="favorite-icon">
           <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
         </div>
-        <p>Happy Birthday</p>
         <div class="product-price">₹999</div>
         <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
         <div class="action-buttons">
@@ -205,7 +171,6 @@
         <div class="favorite-icon">
           <i class="fa-regular fa-heart" style="color: #f00f26;" onclick="handleFavoriteClick(this)"></i>
         </div>
-        <p>Happy Birthday</p>
         <div class="product-price">₹999</div>
         <div class="actual-price" style="text-decoration: line-through;">₹1999</div>
         <div class="action-buttons">
@@ -214,9 +179,8 @@
         </div>
       </div>
       <!-- Add more product items here -->
-    </div> 
     </div>
+    {% include 'customer/customer_footer.html' %}
   </body>
-  {% include 'customer/customer_footer.html' %}
 </html>
 <script src="{% static 'customer/js/home.js' %}"></script>

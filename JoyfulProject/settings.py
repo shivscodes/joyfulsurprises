@@ -145,13 +145,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_URL = ''
+APPEND_SLASH = False
+# AWS S3 Settings
+AWS_ACCESS_KEY_ID =  config('Access_key_id')
+AWS_SECRET_ACCESS_KEY =  config('Secret_access_key')
+AWS_STORAGE_BUCKET_NAME =  config('S3_Bucket_Name')
+AWS_S3_REGION_NAME =  config('Aws_Region')  # e.g., 'us-east-1'
+
+# Make sure you set these variables to correct values for your specific S3 bucket and region.
+
+AWS_DEFAULT_ACL = 'public-read'
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
+
+
+# Use the following storage class
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
 
 AUTH_USER_MODEL = 'customer.CustomUser'
 
-AWS_ACCESS_KEY = config("Access_key")
-AWS_SECRET_ACCESS_KEY = config("Secret_access_key")
-AWS_REGION = config("Aws_Region")
-AWS_STORAGE_BUCKET_NAME =  config('S3_Bucket_Name')
 
 
 # Email configuration

@@ -97,7 +97,10 @@
                     <input type="file" name="{{ tag.tagname }}" id="{{ tag.tagname }}" accept="image/*" required><br>
                 {% endif %}
             {% endfor %}
+            
+            {% if tags %}
             <input type="submit" value="Submit Order">
+            {% endif %}
           </form>
           <button class="add-to-cart">Add To Cart</button>
           <button class="buy-now">Buy Now</button>

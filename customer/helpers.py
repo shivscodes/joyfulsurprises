@@ -13,7 +13,7 @@ def get_super_categories():
         super_category_data = {
             "name": super_category.name,
             "is_active": super_category.is_active,
-            "image_url": str(super_category.image) if super_category.image else None,
+            "image_url": str(super_category.image.url) if super_category.image else None,
             "categories": []
         }
 
@@ -46,7 +46,7 @@ def get_circle_categories():
     for category in circle_categories:
         circle_item = {
             'id': category.id,
-            'circle_image': category.circle_image if category.circle_image else None,
+            'circle_image': category.circle_image.url if category.circle_image else None,
             'alt_text': category.alt_text,
             'circle_category_name': category.circle_category_name,
         }
@@ -58,7 +58,7 @@ def get_active_banners():
     active_banners = MainBanner.objects.filter(active=True)
     banner_data = [
         {
-            'image': banner.image,
+            'image': banner.image.url,
             'alternate_text': banner.alternate_text,
             'active': banner.active,
         }
@@ -71,7 +71,7 @@ def get_subbanner():
     sub_banner_urls = {}
     for sub_banner in active_sub_banners:
         sub_banner_urls[sub_banner.id] = {
-            'image_url': sub_banner.image,
+            'image_url': sub_banner.image.url,
             'alternate_text': sub_banner.alternate_text,
         }
     return sub_banner_urls
@@ -81,7 +81,7 @@ def get_mobile_banners():
     mobile_banners_urls = {}
     for mobile_banner in active_mobile_banners:
         mobile_banners_urls[mobile_banner.id] = {
-            'image_url': mobile_banner.image,
+            'image_url': mobile_banner.image.url,
             'alternate_text': mobile_banner.alternate_text,
         }
     return mobile_banners_urls
@@ -92,7 +92,7 @@ def get_left_containers():
     for left_container in active_left_containers:
         left_containers_urls[left_container.id] = {
             'name' : left_container.name,
-            'image_url': left_container.image,
+            'image_url': left_container.image.url,
             'alternate_text': left_container.alternate_text,
         }
 
@@ -104,7 +104,7 @@ def get_left_sub_images():
     for left_sub_image in active_left_sub_images:
         left_sub_images_urls[left_sub_image.id] = {
             'title': left_sub_image.title,
-            'image_url': left_sub_image.image,
+            'image_url': left_sub_image.image.url,
             'alternate_text': left_sub_image.alternate_text,
         }
 
@@ -116,7 +116,7 @@ def get_right_containers():
     for right_container in active_right_containers:
         right_containers_urls[right_container.id] = {
             'name': right_container.name,
-            'image_url': right_container.image,
+            'image_url': right_container.image.url,
             'alternate_text': right_container.alternate_text,
         }
 
@@ -128,7 +128,7 @@ def get_right_sub_images():
     for right_sub_image in active_right_sub_images:
         right_sub_images_urls[right_sub_image.id] = {
             'title': right_sub_image.title,
-            'image_url': right_sub_image.image,
+            'image_url': right_sub_image.image.url,
             'alternate_text': right_sub_image.alternate_text,
         }
 
@@ -137,7 +137,7 @@ def get_right_sub_images():
 
 def get_product_detail_data():
     try:
-        product = Product.objects.get(product_id='b9a890ca13484b4b8a1fb6aaab3b001c')
+        product = Product.objects.get(product_id='950e2fd016f441b5af2a7d5a33c393b1')
     except Product.DoesNotExist:
         return None
 
