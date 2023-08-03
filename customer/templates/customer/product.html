@@ -16,9 +16,8 @@
   <body>
     <div class="product-section">
       <div class="img-section">
-        <div class="image-container">
+        <div class="main-image-container">
           <div class="thumbnail-images">
-
             {% if product_data.product.product_main_image %}
             <img src="{{ product_data.product.product_main_image }}" alt="Sub Image 5" onclick="updateLargeImage('{{ product_data.product.product_main_image }}')">
             {% endif %}
@@ -90,15 +89,29 @@
                 {% endif %}
             {% endfor %}
 
-            {% for tag in product_data.tags %}
-                {% if tag.tag == 'image' %}
-                    <!-- Image Upload -->
-                    <label for="{{ tag.tagname }}">{{ tag.tagname }}</label>
-                    <input type="file" name="{{ tag.tagname }}" id="{{ tag.tagname }}" accept="image/*" required><br>
-                {% endif %}
-            {% endfor %}
+          <!-- For single image upload -->
+{% for tag in product_data.tags %}
+{% if tag.tag == 'image' %}
+    <label for="{{ tag.tagname }}">{{ tag.tagname }}</label>
+    <input type="file" name="{{ tag.tagname }}" id="{{ tag.tagname }}" accept="image/*" required>
+    <div class="custom-image-preview-container" id="{{ tag.tagname }}_preview"></div>
+    <br>
+{% endif %}
+{% endfor %}
+
+<!-- For multiple image upload -->
+{% for tag in product_data.tags %}
+{% if tag.tag == 'multiple_images' %}
+    <label for="{{ tag.tagname }}">{{ tag.tagname }}</label>
+    <input type="file" name="{{ tag.tagname }}" id="{{ tag.tagname }}" accept="image/*" multiple required>
+    <div class="custom-image-preview-container" id="{{ tag.tagname }}_preview"></div>
+    <br>
+{% endif %}
+{% endfor %}
+
+
             
-            {% if tags %}
+            {% if product_data.tags %}
             <input type="submit" value="Submit Order">
             {% endif %}
           </form>
@@ -171,6 +184,44 @@
         <!-- Add more content here as needed -->
       </div>
     </div>
+    
+    <!-- mobile view -->
+    <div class="container">
+      <div class="first">
+        <div class="slideshow">
+          {% if product_data.product.product_main_image %}
+            <img src="{{ product_data.product.product_main_image }}" alt="Sub Image 5">
+          {% endif %}
+          {% if product_data.sub_images.sub_image1 %}
+          <img src="{{ product_data.sub_images.sub_image1 }}" alt="Sub Image 1">
+          {% endif %}
+        
+          {% if product_data.sub_images.sub_image2 %}
+          <img src="{{ product_data.sub_images.sub_image2 }}" alt="Sub Image 2">
+          {% endif %}
+        
+          {% if product_data.sub_images.sub_image3 %}
+          <img src="{{ product_data.sub_images.sub_image3 }}" alt="Sub Image 3">
+          {% endif %}
+        
+          {% if product_data.sub_images.sub_image4 %}
+          <img src="{{ product_data.sub_images.sub_image4 }}" alt="Sub Image 4">
+          {% endif %}
+        
+          {% if product_data.sub_images.sub_image5 %}
+          <img src="{{ product_data.sub_images.sub_image5 }}" alt="Sub Image 5">
+          {% endif %}
+        </div>
+      </div>
+      <div class="second">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid nesciunt, harum adipisci quod, id quas, mollitia dolores explicabo possimus iure doloremque! Optio temporibus odit nesciunt, quis sapiente ratione, ea deleniti tempore ex autem dolorem placeat incidunt, iste quas alias provident neque aliquid impedit corporis. Explicabo reprehenderit cum atque? Repellat, laudantium dolor magnam, nisi inventore minima esse perferendis consequuntur autem repudiandae nostrum temporibus amet sint, nobis assumenda eum quidem recusandae vero ullam dolorem sapiente! Ipsa iste, ad rerum dolores corrupti maxime distinctio. Similique in culpa cumque asperiores nobis officiis vero atque quas? Facilis tempore voluptates labore atque similique. Vel, id omnis.
+      </div>
+      <div class="third">
+        <button class="add-to-cart">Add To Cart</button>
+        <button class="buy-now">Buy Now</button>
+      </div>
+  </div>
+
     <div class="product-grid">
       <div class="product-item" data-product-id="1">
         <div class="best-seller-tag">Best Seller</div>
@@ -340,6 +391,5 @@
       <!-- Add more product items here -->
     </div>
   </body>
-  {% include 'customer/customer_footer.html' %}
 </html>
 <script src="{% static 'customer/js/product.js' %}"></script>

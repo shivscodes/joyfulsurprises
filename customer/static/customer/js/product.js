@@ -59,47 +59,58 @@ function handleFavoriteClick(icon) {
   }, 3000);
 }
 
+// #######################################################
 // Images Preview
-function removeImage(index) {
-  var previewContainer = document.getElementById('preview-container');
-  var images = previewContainer.getElementsByClassName('preview-image-container');
-  previewContainer.removeChild(images[index]);
-}
+// JavaScript for handling image preview and removal
+function handleImagePreview(input) {
+  if (input.files) {
+    const containerId = input.id + '_preview';
+    const container = document.getElementById(containerId);
+    container.innerHTML = ''; // Clear previous previews
 
-function previewImages() {
-  var previewContainer = document.getElementById('preview-container');
-  var files = document.getElementById('imageUpload').files;
+    for (let i = 0; i < input.files.length; i++) {
+      const reader = new FileReader();
+      const img = document.createElement('img');
+      img.className = 'custom-image-preview';
 
-  if (files.length === 0) {
-    previewContainer.innerHTML = '<p>No images selected</p>';
-  } else {
-    for (var i = 0; i < files.length; i++) {
-      var file = files[i];
-      var reader = new FileReader();
+      // Create a container div for each image
+      const imageContainer = document.createElement('div');
+      imageContainer.className = 'custom-image-container';
 
-      reader.onload = function (event) {
-        var image = new Image();
-        image.src = event.target.result;
-        image.classList.add('preview-image');
+      // Create the 'x' symbol for removal
+      const removeSymbol = document.createElement('div');
+      removeSymbol.className = 'custom-image-remove';
+      removeSymbol.textContent = 'x';
+      removeSymbol.addEventListener('click', () => removeImage(imageContainer, input, i));
 
-        var imageContainer = document.createElement('div');
-        imageContainer.classList.add('preview-image-container');
-        imageContainer.appendChild(image);
-
-        var removeIcon = document.createElement('i');
-        removeIcon.classList.add('remove-icon', 'fas', 'fa-light', 'fa-times', 'fa-xs');
-        removeIcon.onclick = function () {
-          removeImage(Array.from(previewContainer.children).indexOf(imageContainer));
-        };
-        imageContainer.appendChild(removeIcon);
-
-        previewContainer.appendChild(imageContainer);
+      // Read the image file and set the preview
+      reader.onload = function (e) {
+        img.src = e.target.result;
+        imageContainer.appendChild(img);
+        imageContainer.appendChild(removeSymbol);
       };
+      reader.readAsDataURL(input.files[i]);
 
-      reader.readAsDataURL(file);
+      container.appendChild(imageContainer);
     }
+
+    container.style.display = 'flex';
   }
 }
 
-var imageUpload = document.getElementById('imageUpload');
-imageUpload.addEventListener('change', previewImages);
+function removeImage(container, input, index) {
+  container.parentNode.removeChild(container); // Remove the container div (which includes image and 'x' symbol)
+  input.value = ''; // Clear the selected file from the input
+}
+
+// Attach event listeners to the image inputs
+const imageInputs = document.querySelectorAll('input[type="file"][accept="image/*"]:not([multiple])');
+const multipleImageInputs = document.querySelectorAll('input[type="file"][accept="image/*"][multiple]');
+
+imageInputs.forEach((input) => {
+  input.addEventListener('change', () => handleImagePreview(input));
+});
+
+multipleImageInputs.forEach((input) => {
+  input.addEventListener('change', () => handleImagePreview(input));
+});

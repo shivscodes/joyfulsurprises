@@ -130,3 +130,15 @@ body::-webkit-scrollbar {
   z-index: 9999;
   animation: flash-card-appear 0.3s ease-out;
 }
+
+
+/* Mobile View */
+@media (max-width: 767px) {
+  .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 5px;
+  }
+
+  
+  }
